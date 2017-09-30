@@ -102,9 +102,9 @@
       <category term="开源" scheme="http://tingxins.cn/categories/%E5%BC%80%E6%BA%90/"/>
     
     
-      <category term="Swift" scheme="http://tingxins.cn/tags/Swift/"/>
-    
       <category term="Objective-C" scheme="http://tingxins.cn/tags/Objective-C/"/>
+    
+      <category term="Swift" scheme="http://tingxins.cn/tags/Swift/"/>
     
       <category term="InputText" scheme="http://tingxins.cn/tags/InputText/"/>
     
@@ -134,13 +134,13 @@
       <category term="普文" scheme="http://tingxins.cn/categories/%E6%99%AE%E6%96%87/"/>
     
     
+      <category term="Objective-C" scheme="http://tingxins.cn/tags/Objective-C/"/>
+    
       <category term="元类" scheme="http://tingxins.cn/tags/%E5%85%83%E7%B1%BB/"/>
     
       <category term="对象" scheme="http://tingxins.cn/tags/%E5%AF%B9%E8%B1%A1/"/>
     
       <category term="类" scheme="http://tingxins.cn/tags/%E7%B1%BB/"/>
-    
-      <category term="Objective-C" scheme="http://tingxins.cn/tags/Objective-C/"/>
     
   </entry>
   
