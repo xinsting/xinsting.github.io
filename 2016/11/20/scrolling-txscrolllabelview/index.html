@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="tingxins - 神奇世界">
-    <title>02-希尔排序 (Shell Sort) - tingxins - 神奇世界</title>
+    <title>iOS 跑马灯之 TXScrollLabelView - tingxins - 神奇世界</title>
     <meta name="author" content="tingxins">
     
         <meta name="keywords" content="javascript,hexo">
@@ -17,20 +17,23 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="希尔排序算法其本质就是插入排序，是直接插入排序算法的一种改进，因 [D.L shell](https://en.wikipedia.org/wiki/Donald_Shell) 于 1959 年提出而得名">
+    <meta name="description" content="前段时间在开发一个广播的功能，网上也自己找了一些库，没有发现非常好用的，于是自己抽时间写了一个，发布一天收获六十多个 star，这里首先感谢大家">
 <meta name="keywords" content="javascript,hexo">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="02-希尔排序 (Shell Sort)">
-<meta property="og:url" content="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/index.html">
+<meta property="og:title" content="iOS 跑马灯之 TXScrollLabelView">
+<meta property="og:url" content="http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/index.html">
 <meta property="og:site_name" content="tingxins - 神奇世界">
-<meta property="og:description" content="希尔排序算法其本质就是插入排序，是直接插入排序算法的一种改进，因 [D.L shell](https://en.wikipedia.org/wiki/Donald_Shell) 于 1959 年提出而得名">
+<meta property="og:description" content="前段时间在开发一个广播的功能，网上也自己找了一些库，没有发现非常好用的，于是自己抽时间写了一个，发布一天收获六十多个 star，这里首先感谢大家">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-jd.gif">
+<meta property="og:image" content="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-ka.gif">
+<meta property="og:image" content="http://image.tingxins.cn/TXScrollLabelView/master/scroll-label-view.gif">
 <meta property="og:image" content="http://image.tingxins.cn/adv/wechat-qrcode.jpg">
-<meta property="og:updated_time" content="2017-09-30T03:02:58.000Z">
+<meta property="og:updated_time" content="2017-09-29T13:17:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="02-希尔排序 (Shell Sort)">
-<meta name="twitter:description" content="希尔排序算法其本质就是插入排序，是直接插入排序算法的一种改进，因 [D.L shell](https://en.wikipedia.org/wiki/Donald_Shell) 于 1959 年提出而得名">
-<meta name="twitter:image" content="http://image.tingxins.cn/adv/wechat-qrcode.jpg">
+<meta name="twitter:title" content="iOS 跑马灯之 TXScrollLabelView">
+<meta name="twitter:description" content="前段时间在开发一个广播的功能，网上也自己找了一些库，没有发现非常好用的，于是自己抽时间写了一个，发布一天收获六十多个 star，这里首先感谢大家">
+<meta name="twitter:image" content="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-jd.gif">
 <meta name="twitter:creator" content="@tingxins">
     
         <link rel="publisher" href="https://plus.google.com/117623867079144390000"/>
@@ -42,12 +45,6 @@
         <meta property="og:image" content="http://image.tingxins.cn/user/avatar.jpg"/>
     
     
-        <meta property="og:image" content="http://image.tingxins.cn/blog/sorting_shellsort_anim.gif"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/sorting_shellsort_anim.gif" />
-    
-    
-        <meta property="og:image" content="http://image.tingxins.cn/blog/sorting_shellsort_anim.gif"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/sorting_shellsort_anim.gif" />
     
     
     <!--STYLES-->
@@ -266,41 +263,31 @@
 </nav>
 
             
-        <div class="post-header-cover
-                    text-left
-                    post-header-cover--full"
-             style="background-image:url('http://image.tingxins.cn/blog/sorting_shellsort_anim.gif');"
-             data-behavior="4">
-            
-        </div>
-
             <div id="main" data-behavior="4"
-                 class="hasCover
-                        hasCoverMetaOut
-                        hasCoverCaption">
+                 class="
+                        hasCoverMetaIn
+                        ">
                 
 <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-    
-        <span class="post-header-cover-caption caption">By Simpsons contributor - Own work, CC0, https://commons.wikimedia.org/w/ index.php?curid=16020133</span>
     
     
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            02-希尔排序 (Shell Sort)
+            iOS 跑马灯之 TXScrollLabelView
         </h1>
     
     
         <div class="post-meta">
-    <time itemprop="datePublished" datetime="2017-03-16T15:21:00+08:00">
+    <time itemprop="datePublished" datetime="2016-11-20T12:41:18+08:00">
 	
-		    3月 16, 2017
+		    11月 20, 2016
     	
     </time>
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+    <a class="category-link" href="/categories/开源/">开源</a>
 
 
     
@@ -312,72 +299,42 @@
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <!-- excerpt --></p>
-<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#时间复杂度"><span class="toc-text">时间复杂度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><!-- toc -->
-<p><strong>希尔排序</strong>算法其本质就是插入排序，是直接插入排序算法的一种改进，因 [D.L shell]<br>(<a href="https://en.wikipedia.org/wiki/Donald_Shell" target="_blank" rel="external">https://en.wikipedia.org/wiki/Donald_Shell</a>) 于 1959 年提出而得名，通常我们也称希尔排序为<strong>缩小增量排序</strong>，所谓<code>增量</code>，即将待排序的序列按该增量分割一个或多个子序列，所谓<code>缩小</code>，即当以某个增量分成的所有子序列都排序完后，增量会逐渐缩小（ps：最后一定会缩小到1）。如：先以3为增量，则将待排序的序列下标1、4、7···分成一组，将下标为2、5、8···分成另一组···，当以3为增量分割的所有子序列都排序好后（默认递增），再以1为增量分割该序列（ps：其实就是对基本有序的序列进行直接插入排序），最后完成整个希尔排序。</p>
-<p>希尔排序算法依然可采用嵌套 for 循环的方式实现，本文将只采用递归的方法实现该算法。对于 for 循环的方式，感兴趣的童鞋可以参考笔者之前写的一篇文章<a href="https://tingxins.com/2017/03/goldbach-conjecture/" target="_blank" rel="external">哥德巴赫猜想</a>。下面我们开始进入正题。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><!-- toc -->
-<p>我们以下面10个数字组成的序列来做分析：</p>
-<p>13, 12, 2, 22, 16, 11, 10, 1, 21, 15</p>
-<p>首先我们要明白希尔排序算法的执行时间依赖于增量序列，关于增量序列，要注意两点：</p>
-<ol>
-<li>增量序列最后一个增量必须为1.</li>
-<li>应尽量避免增量序列中的值互为倍数（避免重复排序），如：1、2、4、8。</li>
-</ol>
-<p>针对上面给出的序列，我们以5、3、1为增量序列，下面模拟排序，以增量5为例，下面是每个子序列完成排序后的结果：</p>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TXScrollLabelView-？"><span class="toc-text">TXScrollLabelView ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支持滚动类型"><span class="toc-text">支持滚动类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何接入-？"><span class="toc-text">如何接入 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用-？"><span class="toc-text">如何使用 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol></li></ol>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><!-- toc -->
+<p>前段时间在开发一个广播的功能，网上也自己找了一些库，没有发现非常好用的，于是自己抽时间写了一个，发布一天收获六十多个 <code>star</code>，这里首先感谢大家在微博上的转发，使得 <a href="https://github.com/tingxins/TXScrollLabelView" target="_blank" rel="external"><code>TXScrollLabelView</code></a>  被更多需要的人知道，同时非常感谢大家的吐槽及建议，使之诞生 <a href="https://github.com/tingxins/TXScrollLabelView" target="_blank" rel="external"><code>TXScrollLabelView</code></a> v1.1.1 版本，目前已支持 <code>CocoaPods</code>，后续会增加 <code>Carthage</code>。Github 地址: <a href="https://github.com/tingxins/TXScrollLabelView" target="_blank" rel="external">TXScrollLabelView</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">pod search TXScrollLabelView</div><div class="line"></div><div class="line">-&gt; TXScrollLabelView (1.1.1)</div><div class="line">   The best way to show &amp; display such as adverts,boardcast,OnSale e.g. with a</div><div class="line">   customView.</div><div class="line">   pod &apos;TXScrollLabelView&apos;, &apos;~&gt; 1.1.1&apos;</div><div class="line">   - Homepage: https://github.com/tingxins/TXScrollLabelView</div><div class="line">   - Source:   https://github.com/tingxins/TXScrollLabelView.git</div><div class="line">   - Versions: 1.1.1 [master repo]</div></pre></td></tr></table></figure>
+<h2 id="TXScrollLabelView-？"><a href="#TXScrollLabelView-？" class="headerlink" title="TXScrollLabelView ？"></a>TXScrollLabelView ？</h2><!-- toc -->
+<p><code>TXScrollLabelView</code> 是一个能够快速接入自定义标签滚动视图，可以做促销栏、头条栏、广播栏、广告栏等等展示，效果图：</p>
+<p><img src="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-jd.gif" alt="scrolling-txscrolllabelview-jd"></p>
+<p><img src="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-ka.gif" alt="scrolling-txscrolllabelview-ka"></p>
+<p><img src="http://image.tingxins.cn/TXScrollLabelView/master/scroll-label-view.gif" alt="scrolling-txscrolllabelview-un"></p>
+<h2 id="支持滚动类型"><a href="#支持滚动类型" class="headerlink" title="支持滚动类型"></a>支持滚动类型</h2><!-- toc -->
+<p>现在 <code>TXScrollLabelView</code> 支持4种滚动类型：</p>
 <ul>
-<li><p>13 12 2 22 16 11 10 1 21 15</p>
+<li><p><code>TXScrollLabelViewTypeLeftRight</code>：从右向左单行滚动</p>
 </li>
-<li><p><strong><code>11</code></strong> 12 2 22 16 <strong><code>13</code></strong> 10 1 21 15 //11 与 13 互换</p>
+<li><p><code>TXScrollLabelViewTypeUpDown</code>：从下至上多行滚动</p>
 </li>
-<li>11 <strong><code>10</code></strong> 2 22 16 13 <strong><code>12</code></strong> 1 21 15 //10 与 12 互换</li>
-<li>11 10 <strong><code>1</code></strong> 22 16 13 12 <strong><code>2</code></strong> 21 15 //1 与 2 互换</li>
-<li>11 10 1 <strong><code>21</code></strong> 16 13 12 2 <strong><code>22</code></strong> 15 //21 与 22 互换</li>
-<li>11 10 1 21 <strong><code>15</code></strong> 13 12 2 22 <strong><code>16</code></strong> //15 与 16 互换</li>
+<li><p><code>TXScrollLabelViewTypeFlipRepeat</code>：从下至上单行循环滚动</p>
+</li>
+<li><p><code>TXScrollLabelViewTypeFlipNoRepeat</code>：从下至上单行依次滚动</p>
+</li>
 </ul>
-<p>此时以5为增量分割的五个子序列都已排序完成：</p>
+<p>前几天 <code>GitHub</code> 有人提出 <code>scrollVelocity</code> 针对相关类型失效问题，现在已经全部解决，以上四种类型 <code>scrollVelocity</code> 全部支持啦。后期会持续增加更多的功能，满足更多的需求。</p>
+<h2 id="如何接入-？"><a href="#如何接入-？" class="headerlink" title="如何接入 ？"></a>如何接入 ？</h2><!-- toc -->
+<p>目前支持两种方式集成 <code>TXScrollLabelView</code>:</p>
 <ul>
-<li>11 10 1 21 15 13 12 2 22 16</li>
+<li><p>使用 <code>cocoaPods</code></p>
+<pre><code>platform :ios, &apos;7.0&apos;
+pod &apos;TXScrollLabelView&apos;
+</code></pre></li>
+<li><p>手动</p>
+<p>  <code>Clone</code> 或者 <code>DownloadZip</code> 至本地，然后手动拖拽 <code>TXScrollLabelView</code> 文件夹中的文件至项目中，使用的时候 <code>#import &quot;TXScrollLabelView.h“</code> 即可。</p>
+</li>
 </ul>
-<p>然后在对上面得出的结果以增量3进行分割，重复相同的操作，最后在以1为增量进行分割（即进行一趟直接插入排序），从而完成希尔排序。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><!-- toc -->
-<p>采用递归方式，上文也提到过，希尔排序本质就是一种插入排序，是直接插入排序的一种改进。通过上述分析，我们可以划分如下几个步骤：</p>
-<ol>
-<li>递归增量序列。</li>
-<li>递归增量分割的所有子序列。</li>
-<li>针对子序列进行直接插入排序（递归方式）。</li>
-<li>返回步骤1，知道增量序列递归完毕。</li>
-</ol>
-<p>针对这几个步骤，我们来把握一个临界值：</p>
-<ul>
-<li>只有当前增量 delta &gt; 1 时，我们才需要继续递归增量序列，反之，代表希尔排序已经完成。</li>
-</ul>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><!-- toc -->
-<p>通过上述分析，想必大部分读者已经有思路，现在我们上代码。程序主要分四个模块：</p>
-<ol>
-<li><p>专门处理特定子序列排序递归函数（采用直接插入排序）</p>
-<!-- toc -->
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line">针对特定子序列进行直接插入排序，比较每一趟排序的数字并排排序</div><div class="line"> </div><div class="line">@param data 待排序的序列</div><div class="line">@param tmp 寻找插入位置的当前元素</div><div class="line">@param n 序列长度</div><div class="line">@param delta 本趟排序增量</div><div class="line">*/</div><div class="line">int StraightInsertionSortInnerRecursionCompare(int data[], int tmp, int n,  int delta) &#123;</div><div class="line">    if (n &lt; 0) return n + delta; // 直接返回当前比较待插入的位置</div><div class="line">    if (tmp &lt; data[n]) &#123;</div><div class="line">       data[n + delta] = data[n]; // 把大的元素往后挪</div><div class="line">    &#125;else &#123;</div><div class="line">        return n + delta; // 返回当前比较待插入的位置</div><div class="line">    &#125;</div><div class="line">    return StraightInsertionSortInnerRecursionCompare(data, tmp, n - delta, delta);// 子序列递归方式排序</div><div class="line">&#125;</div><div class="line">// 得出索引值</div><div class="line">int StraightInsertionSortInnerRecursionIndex(int data[], int n, int delta) &#123;</div><div class="line">    return StraightInsertionSortInnerRecursionCompare(data, data[n], n - delta, delta);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>处理所有子序列排序的递归函数</p>
-<!-- toc -->
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 递归增量分割的所有子序列，针对排序递归！</div><div class="line">void StraightInsertionSortInnerRecursion(int data[], int n, int currentIndex, int delta)  &#123;</div><div class="line">    if (currentIndex &gt;= n) return;</div><div class="line">    int tmp =  data[currentIndex];</div><div class="line">    data[StraightInsertionSortInnerRecursionIndex(data, currentIndex, delta)] = tmp; // 根据返回的索引修改该值，表示一趟排序完成</div><div class="line">    StraightInsertionSortInnerRecursion(data, n, currentIndex + delta, delta);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>处理增量序列的递归函数</p>
-<!-- toc -->
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line">递归增量序列，希尔排序，注意delta 为素数，</div><div class="line"> </div><div class="line">@param data 待排序的序列</div><div class="line">@param n 序列长度</div><div class="line">@param currentIndex 子序列排序起点</div><div class="line">@param delta 本趟排序增量</div><div class="line">*/</div><div class="line">void shellSort(int data[], int n, int currentIndex, int delta) &#123;</div><div class="line">    if (delta % 2 == 0) &#123;</div><div class="line">        printf(&quot;Delta error!&quot;);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    if (delta &lt; 1) return;</div><div class="line"></div><div class="line">    if (currentIndex + delta &gt; n) &#123;</div><div class="line">        shellSort(data, n, 0, delta - 2);</div><div class="line">    &#125;else &#123;</div><div class="line">        StraightInsertionSortInnerRecursion(data, n, currentIndex + delta, delta);</div><div class="line">        if (delta &gt; 1) &#123;</div><div class="line">            shellSort(data, n, currentIndex + 1, delta);//开始递归下一个子序列</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol>
-<li><p>主函数模块</p>
-<!-- toc -->
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">int main() &#123;</div><div class="line">    int data[] = &#123;13, 12, 2, 22, 16, 11, 10, 1, 21, 15&#125;;//为了方便，先固定该序列</div><div class="line">    int n = 10;</div><div class="line">    shellSort(data, n, 0, 5); // 开始希尔排序</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><!-- toc -->
-<p>希尔排序的复杂度分析较为复杂，笔者高数较水，此处不做分析，感兴趣的同学可以参考：<a href="https://en.wikipedia.org/wiki/Shellsort#Gap_sequences" target="_blank" rel="external">传送门</a>。<a href="https://github.com/tingxins/tx-c-algorithm/tree/master/Classical%20Algorithm/ShellSort" target="_blank" rel="external">源码地址</a></p>
+<h2 id="如何使用-？"><a href="#如何使用-？" class="headerlink" title="如何使用 ？"></a>如何使用 ？</h2><!-- toc -->
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//1.获取滚动的内容</div><div class="line">NSString *scrollTitle = @&quot;xxxxxx&quot;;</div><div class="line">//2.创建TXScrollLabelView</div><div class="line">TXScrollLabelView *scrollLabelView = [TXScrollLabelView scrollWithTitle:scrollTitle type:0 velocity:3 options:UIViewAnimationOptionTransitionFlipFromTop];</div><div class="line">//3.开始滚动</div><div class="line">[scrollLabelView beginScrolling];</div></pre></td></tr></table></figure>
+<p>更多请详见Demo：<a href="https://github.com/tingxins/TXScrollLabelView/tree/master/TXScrollLabelViewDemo" target="_blank" rel="external">https://github.com/tingxins/TXScrollLabelView/tree/master/TXScrollLabelViewDemo</a></p>
 <h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><!-- toc -->
 <p>欢迎关注微信公众号</p>
 <p><img src="http://image.tingxins.cn/adv/wechat-qrcode.jpg" alt="wechat-qrcode"></p>
@@ -389,7 +346,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/C/">C</a> <a class="tag tag--primary tag--small t-link" href="/tags/排序/">排序</a> <a class="tag tag--primary tag--small t-link" href="/tags/算法/">算法</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Objective-C/">Objective-C</a> <a class="tag tag--primary tag--small t-link" href="/tags/UIScrollView/">UIScrollView</a>
 
             </div>
         
@@ -399,7 +356,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/30/2017-04-30-synchronous-gcd/"  data-tooltip="iOS 中网络请求同步">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/13/summary-2016/"  data-tooltip="2016 Summary">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -407,7 +364,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/13/2017-03-14-goldbach-conjecture/" data-tooltip="01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/11/03/ns-timer-cadisplay-link-leaks/" data-tooltip="浅析 NSTimer &amp; CADisplayLink 内存泄漏">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -425,7 +382,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -433,7 +390,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -441,7 +398,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -449,7 +406,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -457,7 +414,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/&amp;title=02-希尔排序 (Shell Sort)">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/&amp;title=iOS 跑马灯之 TXScrollLabelView">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -510,7 +467,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/30/2017-04-30-synchronous-gcd/"  data-tooltip="iOS 中网络请求同步">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/13/summary-2016/"  data-tooltip="2016 Summary">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -518,7 +475,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/13/2017-03-14-goldbach-conjecture/" data-tooltip="01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/11/03/ns-timer-cadisplay-link-leaks/" data-tooltip="浅析 NSTimer &amp; CADisplayLink 内存泄漏">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -536,7 +493,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -544,7 +501,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -552,7 +509,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -560,7 +517,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -568,7 +525,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/&amp;title=02-希尔排序 (Shell Sort)">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/&amp;title=iOS 跑马灯之 TXScrollLabelView">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -599,7 +556,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
                 </a>
             </li>
@@ -607,7 +564,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
                 </a>
             </li>
@@ -615,7 +572,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
                 </a>
             </li>
@@ -623,7 +580,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                     <i class="fa fa-weibo"></i><span>分享到 Weibo</span>
                 </a>
             </li>
@@ -631,7 +588,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/&amp;title=02-希尔排序 (Shell Sort)">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/&amp;title=iOS 跑马灯之 TXScrollLabelView">
                     <i class="fa fa-qq"></i><span>分享到 QQ</span>
                 </a>
             </li>
@@ -701,13 +658,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/date-formate-patterns.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <h3 class="media-heading">性能优化之 NSDateFormatter</h3>
                         </a>
                         <span class="media-meta">
@@ -726,13 +683,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/timer-leaks-unresolved.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <h3 class="media-heading">浅析 NSTimer &amp; CADisplayLink 内存泄漏</h3>
                         </a>
                         <span class="media-meta">
@@ -751,7 +708,7 @@
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                             <h3 class="media-heading">iOS 跑马灯之 TXScrollLabelView</h3>
                         </a>
                         <span class="media-meta">
@@ -770,7 +727,7 @@
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/2017-01-14-summary-2016/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/summary-2016/">
                             <h3 class="media-heading">2016 Summary</h3>
                         </a>
                         <span class="media-meta">
@@ -789,13 +746,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-plane.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <h3 class="media-heading">字符编码（一）</h3>
                         </a>
                         <span class="media-meta">
@@ -814,13 +771,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-latin-extended-additional.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <h3 class="media-heading">Swift 3.x 中 Strings/Characters 闲聊</h3>
                         </a>
                         <span class="media-meta">
@@ -839,13 +796,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <h3 class="media-heading">01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)</h3>
                         </a>
                         <span class="media-meta">
@@ -864,13 +821,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/sorting_shellsort_anim.gif" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <h3 class="media-heading">02-希尔排序 (Shell Sort)</h3>
                         </a>
                         <span class="media-meta">
@@ -889,13 +846,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <img class="media-image" src="http://image.tingxins.cn/Blog/browser-jd.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <h3 class="media-heading">iOS 中网络请求同步</h3>
                         </a>
                         <span class="media-meta">
@@ -914,13 +871,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <h3 class="media-heading">Objective-C 中的对象、类、元类</h3>
                         </a>
                         <span class="media-meta">
@@ -958,9 +915,9 @@
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/';
+                 this.page.url = 'http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/';
                  
-                    this.page.identifier = '2017/03/16/2017-03-17-shell-sort/';
+                    this.page.identifier = '2016/11/20/scrolling-txscrolllabelview/';
                  
              };
             (function() {

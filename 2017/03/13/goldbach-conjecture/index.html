@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="tingxins - 神奇世界">
-    <title>字符编码（一） - tingxins - 神奇世界</title>
+    <title>01-哥德巴赫猜想 (Goldbach&#39;s Conjecture) - tingxins - 神奇世界</title>
     <meta name="author" content="tingxins">
     
         <meta name="keywords" content="javascript,hexo">
@@ -17,26 +17,23 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="最近在看书的时候突然纠结于Unicode相关字符编码，查了一些资料，并写了这篇文章，顺带做下笔记，希望能帮到一些人。">
+    <meta name="description" content="哥德巴赫猜想是(Goldbach’s Conjecture)是数论中存在最久的未解问题之一，是一个伟大的世界性的数学猜想，其基本思想可以陈述为：">
 <meta name="keywords" content="javascript,hexo">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="字符编码（一）">
-<meta property="og:url" content="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/index.html">
+<meta property="og:title" content="01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)">
+<meta property="og:url" content="http://tingxins.cn/2017/03/13/goldbach-conjecture/index.html">
 <meta property="og:site_name" content="tingxins - 神奇世界">
-<meta property="og:description" content="最近在看书的时候突然纠结于Unicode相关字符编码，查了一些资料，并写了这篇文章，顺带做下笔记，希望能帮到一些人。">
+<meta property="og:description" content="哥德巴赫猜想是(Goldbach’s Conjecture)是数论中存在最久的未解问题之一，是一个伟大的世界性的数学猜想，其基本思想可以陈述为：">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="http://image.tingxins.cn/blog/unicode-plane.png">
-<meta property="og:image" content="http://image.tingxins.cn/blog/unicode-utf-8.png">
-<meta property="og:image" content="http://image.tingxins.cn/blog/unicode-scalar-illegality.png">
-<meta property="og:image" content="http://image.tingxins.cn/blog/unicode-utf-16-lt.png">
-<meta property="og:image" content="http://image.tingxins.cn/blog/unicode-utf-16.png">
-<meta property="og:image" content="http://image.tingxins.cn/blog/unicode-endian.png">
+<meta property="og:image" content="http://image.tingxins.cn/blog/goldbach-conjecture-fish.png">
+<meta property="og:image" content="http://image.tingxins.cn/blog/algorithm-analyze-a.png">
+<meta property="og:image" content="http://image.tingxins.cn/blog/algorithm-analyze-b.png">
 <meta property="og:image" content="http://image.tingxins.cn/adv/wechat-qrcode.jpg">
-<meta property="og:updated_time" content="2017-09-29T13:17:46.000Z">
+<meta property="og:updated_time" content="2017-09-30T03:05:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="字符编码（一）">
-<meta name="twitter:description" content="最近在看书的时候突然纠结于Unicode相关字符编码，查了一些资料，并写了这篇文章，顺带做下笔记，希望能帮到一些人。">
-<meta name="twitter:image" content="http://image.tingxins.cn/blog/unicode-plane.png">
+<meta name="twitter:title" content="01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)">
+<meta name="twitter:description" content="哥德巴赫猜想是(Goldbach’s Conjecture)是数论中存在最久的未解问题之一，是一个伟大的世界性的数学猜想，其基本思想可以陈述为：">
+<meta name="twitter:image" content="http://image.tingxins.cn/blog/goldbach-conjecture-fish.png">
 <meta name="twitter:creator" content="@tingxins">
     
         <link rel="publisher" href="https://plus.google.com/117623867079144390000"/>
@@ -48,12 +45,12 @@
         <meta property="og:image" content="http://image.tingxins.cn/user/avatar.jpg"/>
     
     
-        <meta property="og:image" content="http://image.tingxins.cn/blog/unicode-plane.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/unicode-plane.png" />
+        <meta property="og:image" content="http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png" />
     
     
-        <meta property="og:image" content="http://image.tingxins.cn/blog/unicode-plane.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/unicode-plane.png" />
+        <meta property="og:image" content="http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png" />
     
     
     <!--STYLES-->
@@ -275,7 +272,7 @@
         <div class="post-header-cover
                     text-left
                     post-header-cover--full"
-             style="background-image:url('http://image.tingxins.cn/blog/unicode-plane.png');"
+             style="background-image:url('http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png');"
              data-behavior="4">
             
         </div>
@@ -287,26 +284,26 @@
                 
 <article class="post" itemscope itemType="http://schema.org/BlogPosting">
     
-        <span class="post-header-cover-caption caption">unicode-plane</span>
+        <span class="post-header-cover-caption caption">goldbach-partitions-of-the-even</span>
     
     
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            字符编码（一）
+            01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)
         </h1>
     
     
         <div class="post-meta">
-    <time itemprop="datePublished" datetime="2017-01-27T15:14:00+08:00">
+    <time itemprop="datePublished" datetime="2017-03-13T15:16:00+08:00">
 	
-		    1月 27, 2017
+		    3月 13, 2017
     	
     </time>
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/categories/普文/">普文</a>
+    <a class="category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
 
 
     
@@ -318,77 +315,84 @@
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <!-- excerpt --></p>
-<p>最近在看书的时候突然纠结于Unicode相关字符编码，查了一些资料，并写了这篇文章，顺带做下笔记，希望能帮到一些人。文章如果有写的不妥的或者不正确的地方还请大家纠正。</p>
-<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unicode-编码"><span class="toc-text">[Unicode 编码]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-8"><span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UTF-16"><span class="toc-text">UTF-16</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#大端存储和小端存储"><span class="toc-text">大端存储和小端存储</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关文章及链接"><span class="toc-text">相关文章及链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a>
-<h3 id="Unicode-编码"><a href="#Unicode-编码" class="headerlink" title="[Unicode 编码]"></a>[Unicode 编码]</h3><!-- toc -->(<a href="https://zh.wikipedia.org/zh-cn/Unicode#Unicode.E7.9A.84.E7.BC.96.E7.A0.81.E5.92.8C.E5.AE.9E.E7.8E.B0" target="_blank" rel="external">https://zh.wikipedia.org/zh-cn/Unicode#Unicode.E7.9A.84.E7.BC.96.E7.A0.81.E5.92.8C.E5.AE.9E.E7.8E.B0</a>)<br><br>Unicode是一个符号集，它对世界上大部分的文字系统进行了整理、编码，使得电脑可以用更为简单的方式来呈现和处理文字。解决传统的字符编码方案的局限。<br><br>历史上存在两个独立的尝试创立单一字符集的组织，即国际标准化组织（ISO）和<a href="http://www.unicode.org/" target="_blank" rel="external">非营利机构统一码联盟</a>。前者开发的 ISO/IEC 10646 项目，后者开发的统一码项目。因此最初制定了不同的标准。他们不久便发现对方的存在，大家为着相同的目的而工作，最后他们合并双方的工作成果。统一码（Unicode）的编码方式与ISO 10646的通用字符集（Universal Character Set, 简称UCS）概念相对应。<br><br>统一码的编码方式使用16位编码空间，也就是每个字符占用2个字节，最多可表示2^(16)个字符，基本满足各种语言的需求，且实际上16为编码空间并未完全使用，其中保留了大量空间作为未来备用。这里所说的16位编码空间即统一码的0号平面（也称“<strong>基本多文种平面</strong>”，Basic Multilingual Plane，简称BMP），目前统一码版本中另外定义了16个<strong>辅助平面</strong>，这样就需求21位编码空间，即 16+5 位，一共17个平面（不局限于），每个平面拥有2^(16)个代码点。如下表所示（摘自Wikipedia）：<br><br><img src="http://image.tingxins.cn/blog/unicode-plane.png" alt="unicode-plane"><br><br>### ASCII<br><!-- toc -->
-<p>ASCII（“阿斯柯”） 是国际上普遍采用的一种字符编码系统，由8位二进制进行编码，最高位恒为0，因此可以定义128个字符，其中包括10个十进制数字、52个英文大小写字母（A~Z, a~z）等。</p>
-<h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><!-- toc -->
-<p><strong>UTF</strong>（Unicode Transformation Format, Unicode字符集转换格式），UTF-7、UTF-8、UTF-16、UTF-32、GB18030…只是Unicode的一种实现方式，即怎样将 Unicode 定义的数字转换成程序数据。</p>
-<p><strong>UTF-8 编码</strong>，以8位无符号整数为单位进行编码，是针对Unicode的可变长字符编码，UTF-8 是 ASCII 编码的父集，也就是说，UTF-8 与 ASCII 编码兼容，如：对于0x000000-0x00007F之间的字符，即前128个字符，UTF-8 编码与 ASCII 编码完全相同。这使得原来处理 ASCII 码字符的软件无须或只须做少部分修改，即可继续使用，UTF-8 编码应用广泛，基本所有互联网协议都支持 UTF-8 编码，是目前编码方式中优先采用的方式之一。</p>
-<p>关于Unicode 与 UTF-8 编码之间的转换关系，如下表所示：</p>
-<p><img src="http://image.tingxins.cn/blog/unicode-utf-8.png" alt="unicode-utf-8"></p>
-<p>在基本多文种平面中约定00D800-00DFFF这范围用于<strong>UTF-16扩展标识辅助平面</strong>（即低位两个字节），在UTF-16 中会详细介绍。</p>
-<p>举个例子，汉字“听”的 Unicode 编码是U+542C，转成UTF-8，步骤如下：</p>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#思路A"><span class="toc-text">思路A</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现A"><span class="toc-text">实现A</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思路B"><span class="toc-text">思路B</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现B"><span class="toc-text">实现B</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间复杂度对比"><span class="toc-text">时间复杂度对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-算法分析"><span class="toc-text">A 算法分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-算法分析"><span class="toc-text">B 算法分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结论"><span class="toc-text">结论</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><!-- toc -->
+<p>哥德巴赫猜想是(<a href="https://zh.wikipedia.org/zh-cn/哥德巴赫猜想" target="_blank" rel="external">Goldbach’s Conjecture</a>)是数论中存在最久的未解问题之一，<br>是一个伟大的世界性的数学猜想，其基本思想可以陈述为：</p>
+<blockquote>
+<p>任何一个大于2的偶数，都能表示成两个素数之和。</p>
+</blockquote>
+<p>如：<br>4 = 2 + 2<br>6 = 3 + 3<br>96= 23 + 73</p>
+<p>本文将采用两种不同的算法来求出给定范围 n 内的哥德巴赫数字，并对比其时间复杂度，得出更优算法。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><!-- toc -->
+<p>根据哥德巴赫猜想，我们可以得出如下信息：</p>
 <ol>
-<li>由上表可得出，“听”字的 Unicode 编码属于U+0800到U+D7FF区域，说明该字占用3个字节，按照1110xxxx-10xxxxxx-10xxxxxx进行填充。</li>
-<li>U+542C换算成二进制：0101-0100-0010-1100。</li>
-<li>从低位向高位填充，代替x，11100101-10010000-10101100。</li>
-<li>得出汉字“听”的UTF-8编码：0xE590AC。</li>
+<li>哥德巴赫数字是一个大于2的偶数。</li>
+<li>哥德巴赫数字等于两个素数相加。</li>
 </ol>
-<p>从Unicode 2.0开始，Unicode采用了与ISO 10646-1相同的字库和字码；ISO也承诺，ISO 10646将不会替超出U+10FFFF的UCS-4编码赋值，以使得两者保持一致。2003年11月 UTF-8 被 <a href="http://www.ietf.org/rfc/rfc3629.txt" target="_blank" rel="external">RFC 3629</a>重新规范，只能使用原来Unicode定义的区域，U+0000到U+10FFFF。如果以上都能理解，那么下表就非常好理解了（摘自Wikipedia）：</p>
-<p><img src="http://image.tingxins.cn/blog/unicode-scalar-illegality.png" alt="unicode-scalar-illegality"></p>
-<p>之前有较多的人在微博上私信我@tingxins，关于这表格，疑惑颇多，因此在此处进行补充并简单解释一下，希望能帮到读者。C0，C1非常好理解，不再详述。我们来看看F5-FF的头字节，为什么是非法的？我们可以以 U+10FFFF 为例，转UTF-8编码后，可以得出头字节二进制流为11110100，即F4，基于 RFC 3629 规范，因此可得出大于F4头字节的可以理解成非法的或者不可能出现的编码，就7或8字节序列的头字节而言，更是违反了早期UTF-8编码不可超过6字节序列的规范。（<strong>更新于 2017-2-18</strong>）</p>
-<p><strong>UTF-8 小结</strong></p>
+<h3 id="思路A"><a href="#思路A" class="headerlink" title="思路A"></a>思路A</h3><!-- toc -->
+<p>思路A与之前见过的很多想法一样，简单粗暴，采用嵌套 for 循环。思路如下：</p>
 <ol>
-<li>在UTF-8文件的开首，以EF,BB,BF代表，以显示这个文本文件是以UTF-8编码。</li>
-<li>字节0xFE和0xFF在UTF-8编码中从未用到，同时，UTF-8以字节为编码单元，它的字节顺序在所有系统中都是一様的，没有字节序的问题，也因此它实际上并不需要BOM（字节顺序标记，Byte-Order Mark），但在UTF-16中用来标记存储方式（大端小端）。</li>
-<li>ASCII和UTF-8两种编码方式下是一样的，可以说UTF-8是ASCII编码的父集。</li>
+<li>for 循环依次遍历 [4, n] 范围内的<strong>偶数</strong>。</li>
+<li>然后，针对每个数字（c）再次进行 for 循环找出两个数字（a,b）之和等于该数字的数字。（即 c = a + b）</li>
+<li>判断 a,b 是否都为素数。</li>
+<li>输出结果。</li>
 </ol>
-<p>现在我们已经知道了UTF-8的含义，以及其编码原理，下面我们来探究一下 UTF-16 编码方式。</p>
-<h3 id="UTF-16"><a href="#UTF-16" class="headerlink" title="UTF-16"></a>UTF-16</h3><!-- toc -->
-<p><strong>UTF-16 编码</strong>，以16位无符号整数为单位进行编码。上文中所提及到的“基本多文种平面”的编码空间中保留了一块区域（从U+D800到U+DFFF），该区域不映射Unicode字符，UTF-16就是利用保留下来的0xD800-0xDFFF编码空间来对U+10000到U+10FFFF（即辅助平面）进行字符映射的。</p>
-<p>在 UTF-16 编码中，从U+0000至U+D7FF以及从U+E000至U+FFFF的编码空间的映射关系同 Unicode，相对应于ISO通用字符集中的USC-2。从U+10000到U+10FFFF的编码空间，UTF-16用一对16比特长的码元（即32bit,4Bytes）进行编码，熟称代理对（Surrogate Pair）.</p>
-<p>0xD800-0xDFFF编码空间分成两部分（即上述所说的代理对）：</p>
+<p>Show the (<strong>garbage</strong>) code!</p>
+<h3 id="实现A"><a href="#实现A" class="headerlink" title="实现A"></a>实现A</h3><!-- toc -->
+<p>我们把思路A实现的程序分成两个功能模块：</p>
 <ol>
-<li>UTF-16的高位代理：从U+D800至U+DBFF，也称<strong>前导代理</strong>（lead surrogates）。</li>
-<li>UTF-16的低位代理：从U+DC00至U+DFFF，也称<strong>后尾代理</strong>（trail surrogates）。</li>
+<li><p>判断是否为素数模块 int isPrime(int i)，返回 1 即为素数。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">int isPrime(int i) &#123;</div><div class="line">    int j;</div><div class="line">    if (i &lt;= 1) return 0;</div><div class="line">    if (i == 2) return 1;</div><div class="line">    for (j = 2; j &lt; i; j ++) &#123;</div><div class="line">        number ++;</div><div class="line">        if (i % j == 0) &#123;</div><div class="line">        return 0;</div><div class="line">        &#125;else if(i != j + 1) &#123;</div><div class="line">            continue;</div><div class="line">        &#125;else &#123;</div><div class="line">            return 1;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ol>
-<p>UTF-16 辅助平面编码方式比较巧妙，从U+10000到U+10FFFF，共计FFFFF个，即2^(20)个，至少需要20位来表示，我们再来看代理对，先看高半区，从U+D800到U+DBFF，共计3FF个，即2^(10)个，同理低半区也是2^(10)个，正好为2^(20)个代理对，这也是“基本多语言平面”中保留不对应于Unicode字符的2048个码位的原因。下面我们来看一张表：</p>
-<p><img src="http://image.tingxins.cn/blog/unicode-utf-16-lt.png" alt="unicode-utf-16-lt"></p>
-<p>举个例子，古意大利字母”𐌀”的Unicode编码为U+10300，转成UTF-16，步骤如下：</p>
 <ol>
-<li>在0x10300的基础上先减去0x10000 <strong>–&gt;</strong> 0x00300，转成二进制：0000-0000-0011-0000-0000。</li>
-<li>得出高10位（0000-0000-00）和低10位（11-0000-0000）</li>
-<li>添加0xD800到高10位（不足补0），得出UTF-16高位：0xD800 + 0x0000 <strong>–&gt;</strong> 0xD800</li>
-<li>添加0xDC00到低10位（不足补0），得出UTF-16低位：0xDC00 + 0x0300 <strong>–&gt;</strong> 0xDF00</li>
-<li>得出古意大利字母”𐌀”的UTF-16BE编码：U+D800DF00</li>
+<li><p>主程序模块：针对 [4, n] 之间的正偶数进行数值拆分，然后再用isPrime函数进行筛选，如果k，j都为素数，即满足哥德巴赫猜想，输出该数字。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">do &#123;</div><div class="line">    printf(&quot;please enter a number:&quot;);</div><div class="line">    int number = 0;</div><div class="line">    scanf(&quot;%d&quot;, &amp;number);</div><div class="line">    int i, j, k;</div><div class="line">    for (int i = 4; i &lt;= number; i += 2) &#123;</div><div class="line">        for (k = 2; k&lt;= i/2; k ++) &#123;</div><div class="line">            j = i - k;</div><div class="line">            if (isPrime(k)) &#123;</div><div class="line">                if (isPrime(j)) &#123;</div><div class="line">                    printf(&quot;%d=%d+%d\n&quot;,i, k, j);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;while (1);</div></pre></td></tr></table></figure>
+</li>
 </ol>
-<p>关于Unicode 与 UTF-16 编码之间的转换关系，如下表所示：</p>
-<p><img src="http://image.tingxins.cn/blog/unicode-utf-16.png" alt="unicode-utf-16"></p>
-<p>由上表可看出，UTF-16无法兼容ASCII编码。</p>
-<p><strong>UTF-16 存储形式</strong></p>
-<p>想必读者现在有这样一个疑惑，UTF-16 是以16位无符号整数位单位进行编码，即每个字符占用两个字节，如：在Mac和Window上，对字节顺序的理解是不一样的，这时就出现了一个问题，同一字节流可能会被解释为不同内容，以字符“心“为例，该字符十六进制编码为U+5FC3，按两个字节进行拆分：5F和C3，在Mac上读取时是从低字节开始，那么在Mac OS会认为此U+5FC3编码为U+C35F，显示字符为”썟”，而在Windows上从高字节开始读取，则编码为U+5FC3的字符为“心”。为了解决该问题，字节顺序标记（Byte-Order Mark, BOM）诞生，字符U+FEFF如果出现在字节流的开头，则用来标识该字节流的字节序，是高位在前还是低位在前，反之同理。这两种字节序在计算机我们通常称大端和小端，下面我们来继续探究一下。</p>
-<h5 id="大端存储和小端存储"><a href="#大端存储和小端存储" class="headerlink" title="大端存储和小端存储"></a>大端存储和小端存储</h5><!-- toc -->
-<p>大端存储（Big Endian, 简称BE）：一个字中的高位字节放在内存中这个字区域的低地址。小端存储（Little Endian, 简称LE）：即一个字中的低位字节放在内存中这个字区域的低地址处。</p>
-<p>还是以古意大利字母”𐌀”为例，我们刚已计算出其UTF-16编码为U+D800DF00，如果采用大端存储，编码存储的序列为D800 DF00，采用小端存储，则为00D8 00DF。这个两个存储模式的区别在于字中字节的存储顺序不同，而字的存储顺序是相同的。再看几个例子（摘自Wikipedia）：</p>
-<p><img src="http://image.tingxins.cn/blog/unicode-endian.png" alt="unicode-endian"></p>
-<p><strong>UTF-16 小结</strong></p>
+<h3 id="思路B"><a href="#思路B" class="headerlink" title="思路B"></a>思路B</h3><!-- toc -->
+<p>递归算法，也是我业余时间自己写的一个，递归路径类似鱼骨头，基本思路如下：</p>
 <ol>
-<li>在UTF-16文件的开首，以FEFF 或者 FFFE代表，以显示这个文本文件是以BE存储编码还是以LE存储编码。</li>
-<li>UTF-16编码可以说是UCS-2的父集，对于小于0x10000的Unicode码，UTF-16编码就等于UCS码，也可以说UTF-16编码就等于Unicode标量值。</li>
-<li>UTF-16 <strong>VS</strong> UTF-8，个人觉得这两种编码方式没有可比性，主要取决于字符本身主要集中在哪个平面，两者都是可变长度编码。</li>
-<li>UTF-16 <strong>VS</strong> UCS-2[^1]，如果这个字超过U+FFFF（如：U+10000至U+10FFFF），那么就无法用UCS-2的格式编码，UTF-16可看成是UCS-2的父集。</li>
+<li>针对输入的 n 进行拆分（c = a + b 的形式）并递归。</li>
+<li>如果拆分的数字 a,b 为偶数，则可能为符合哥德巴赫猜想，回到1。</li>
+<li>如果 c 为偶数，且 a,b 为素数，即满足哥德巴赫猜想，输出该数字。</li>
 </ol>
-<p>[^1]: UCS即ISO 10646的通用字符集（Universal Character Set, 简称UCS），UCS-2我们可以简单理解为UTF-16，同样使用16位的编码空间。</p>
-<h3 id="相关文章及链接"><a href="#相关文章及链接" class="headerlink" title="相关文章及链接"></a>相关文章及链接</h3><!-- toc -->
+<p>这里笔者画了一张抽象的鱼骨头图，帮助读者理解：</p>
+<p><img src="http://image.tingxins.cn/blog/goldbach-conjecture-fish.png" alt="goldbach-conjecture-fish"></p>
+<h3 id="实现B"><a href="#实现B" class="headerlink" title="实现B"></a>实现B</h3><!-- toc -->
+<p>思路B实现的程序主要分成三个功能模块，为了区分思路A，判断素数的模块也采用递归的形式：</p>
 <ol>
-<li><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="external">字符编码笔记：ASCII，Unicode和UTF-8</a></li>
-<li><a href="https://zh.wikipedia.org/zh-cn/Unicode" target="_blank" rel="external">Unicode Wikipedia</a></li>
-<li><a href="https://zh.wikipedia.org/zh-cn/UTF-8" target="_blank" rel="external">UTF-8 Wikipedia</a></li>
-<li><a href="https://zh.wikipedia.org/zh-cn/%E4%BD%8D%E5%85%83%E7%B5%84%E9%A0%86%E5%BA%8F%E8%A8%98%E8%99%9F" target="_blank" rel="external">字节顺序标记 Wikipedia</a></li>
-<li><a href="https://zh.wikipedia.org/zh-cn/UTF-16" target="_blank" rel="external">UTF-16 Wikipedia</a></li>
-<li><a href="https://zh.wikipedia.org/zh-cn/Unicode%E5%AD%97%E7%AC%A6%E5%B9%B3%E9%9D%A2%E6%98%A0%E5%B0%84" target="_blank" rel="external">Unicode 字符平面映射</a></li>
+<li><p>判断是否为素数 int isPrime(int i)，返回 1 即为素数。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 判断偶数</div><div class="line">int isEven(int original) &#123;</div><div class="line">    return (original % 2 == 0);</div><div class="line">&#125;</div><div class="line"></div><div class="line">int isPrimeInner(int original, int current) &#123;</div><div class="line">    if (current&lt;=0 || original&lt;=0 || original == 1) return 0;</div><div class="line">    if (original % 2 == 0) &#123;</div><div class="line">        if (original == 2) return 1;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    if (current &gt; (original / 2) + 1) return 1;</div><div class="line">    if (original % current == 0 &amp;&amp; current != 1) return 0;</div><div class="line">    return isPrimeInner(original, current + 2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 判断是否为偶数</div><div class="line">int isPrime(int original) &#123;</div><div class="line">    return isPrimeInner(original, 1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ol>
+<ol>
+<li><p>递归模块</p>
+<p> 参数 <code>current</code>: 代表分裂初始值，参数 <code>flag</code>: 代表是否深入遍历，此处用于控制重复遍历的情况，如：original=10 时，second=8 时，两次会都会重复遍历 6/4/2，因此加入flag进行限制，只进行一次深入遍历！！</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">void splitSumInner(int c, int current, int flag) &#123;</div><div class="line">    // 哥德巴赫为大于2的偶数</div><div class="line">    if (c &lt;= 2) return;</div><div class="line">    // 如果 current 大于 c 的一半，即代表遍历完毕</div><div class="line">    if (current &gt;= (c / 2) + 1) return;</div><div class="line"></div><div class="line">    // 第一次分裂 c 数值</div><div class="line">    int a = current;</div><div class="line">    int b = c - current;</div><div class="line"></div><div class="line">    // 递归遍历并分裂 c 数值</div><div class="line">    splitSumInner(c, ++ current, flag);</div><div class="line"></div><div class="line">    // 判断能否深入遍历</div><div class="line">    if (flag &amp;&amp; a &gt; 2 &amp;&amp; isEven(a)) &#123;</div><div class="line">        // 深入遍历 分裂第一个子偶数</div><div class="line">        splitSum(a, 0);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    if (flag &amp;&amp; b &gt; 2 &amp;&amp; isEven(b)) &#123;</div><div class="line">        // 深入遍历 分裂第二个子偶数</div><div class="line">        splitSum(b, 0);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    // 如果 c 为偶数，且 a,b 为素数，即满足哥德巴赫猜想，输出该数字。</div><div class="line">    if (isEven(c) &amp;&amp; isPrime(a) &amp;&amp; isPrime(b)) &#123;</div><div class="line">        printf(&quot;\n%d=%d+%d\n&quot;,c, a, b);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// original: 待分裂的原始数值（ps：会自动分裂 小于 original 下的所有数值）</div><div class="line">// flag: 1 代表分裂小于 original 下的所有数值；0 代表分裂当前 original 数值</div><div class="line">void splitSum(int original, int flag) &#123;</div><div class="line">    splitSumInner(original, 1, flag);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>主程序模块</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">void goldbachConjecture(int n) &#123;</div><div class="line">    splitSum(n, 1);</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line">    do &#123;</div><div class="line">        printf(&quot;please enter a number:&quot;);</div><div class="line">        int number = 0;</div><div class="line">        scanf(&quot;%d&quot;, &amp;number);</div><div class="line">        goldbachConjecture(number);</div><div class="line">    &#125; while (1);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="时间复杂度对比"><a href="#时间复杂度对比" class="headerlink" title="时间复杂度对比"></a>时间复杂度对比</h3><!-- toc -->
+<p>时间复杂度说白了就是算法中基本操作的执行次数，更通俗的说法，就是最深层循环内的语句。基本操作的重复执行次数是和算法的执行时间成正比的。下面我们来粗略计算一下上述算法的时间复杂度。</p>
+<h4 id="A-算法分析"><a href="#A-算法分析" class="headerlink" title="A 算法分析"></a>A 算法分析</h4><!-- toc -->
+<p>在程序 A 中，与下面的代码相同，采用嵌套三层 for 循环的方式进行遍历：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">for (int i = 1; i &lt;= n; i ++) &#123; // 第一层循环</div><div class="line">        for (int j = 1; j &lt;= i; j ++) &#123; // 第二层循环</div><div class="line">            for (int k = 1; k &lt;= j; k ++) &#123; // 第三层循环</div><div class="line">                count ++;</div><div class="line">                printf(&quot;%d*%d*%d\n&quot;, i, j, k);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</code></pre><p>下面我们来剖析一下基本操作：</p>
+<ol>
+<li>第一层 for 循环执行 n 次。</li>
+<li>第二层 for 循环以 i 为规模分别执行 1,2,3,4……n-1,n 次，集一个公差为 1 的等差数列，总次数为 (n+1)*n/2。</li>
+<li><p>第三层 for 循环采用排列组合来计算，举个例子，当 n = 3 时，有 10 次基本操作，我们把执行路径格式定义成 ijk，如下:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">111</div><div class="line">211  221  222</div><div class="line">311  321  322  331  332  333</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="http://image.tingxins.cn/blog/algorithm-analyze-a.png" alt="algorithm-analyze-a"></p>
+<h4 id="B-算法分析"><a href="#B-算法分析" class="headerlink" title="B 算法分析"></a>B 算法分析</h4><!-- toc -->
+<p><img src="http://image.tingxins.cn/blog/algorithm-analyze-b.png" alt="algorithm-analyze-b"></p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><!-- toc -->
+<p>以上时间复杂度只是笔者通过简单粗略的分析得出，仅供参考。通过上述分析，我们发现算法A与算法B时间复杂度是一样的，感兴趣的童鞋可以自己计算上述两种算法的时间复杂度。笔者通过测试发现，相同的问题规模，随着 n 的增大，算法B的时间复杂度要远小于算法A。如：n = 100 时，算法B遍历次数是 6380 次左右，算法A遍历次数高达 15569 次（论算法糟糕的可怕性…）。<a href="https://github.com/tingxins/tx-c-algorithm/tree/master/Classical%20Algorithm/GoldbachConjecture" target="_blank" rel="external">源码地址</a></p>
 <h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><!-- toc -->
 <p>欢迎关注微信公众号</p>
 <p><img src="http://image.tingxins.cn/adv/wechat-qrcode.jpg" alt="wechat-qrcode"></p>
@@ -400,7 +404,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/UTF/">UTF</a> <a class="tag tag--primary tag--small t-link" href="/tags/Unicode/">Unicode</a> <a class="tag tag--primary tag--small t-link" href="/tags/字符/">字符</a> <a class="tag tag--primary tag--small t-link" href="/tags/编码/">编码</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/C/">C</a> <a class="tag tag--primary tag--small t-link" href="/tags/算法/">算法</a>
 
             </div>
         
@@ -410,7 +414,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/02/19/2017-01-14-swift-string-character-simple/"  data-tooltip="Swift 3.x 中 Strings/Characters 闲聊">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/16/shell-sort/"  data-tooltip="02-希尔排序 (Shell Sort)">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -418,7 +422,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/13/2017-01-14-summary-2016/" data-tooltip="2016 Summary">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/02/19/swift-string-character-simple/" data-tooltip="Swift 3.x 中 Strings/Characters 闲聊">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -436,7 +440,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -444,7 +448,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -452,7 +456,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -460,7 +464,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -468,7 +472,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/&amp;title=字符编码（一）">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/03/13/goldbach-conjecture/&amp;title=01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -521,7 +525,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/02/19/2017-01-14-swift-string-character-simple/"  data-tooltip="Swift 3.x 中 Strings/Characters 闲聊">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/16/shell-sort/"  data-tooltip="02-希尔排序 (Shell Sort)">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -529,7 +533,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/13/2017-01-14-summary-2016/" data-tooltip="2016 Summary">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/02/19/swift-string-character-simple/" data-tooltip="Swift 3.x 中 Strings/Characters 闲聊">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -547,7 +551,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -555,7 +559,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -563,7 +567,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -571,7 +575,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -579,7 +583,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/&amp;title=字符编码（一）">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/03/13/goldbach-conjecture/&amp;title=01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -610,7 +614,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
                 </a>
             </li>
@@ -618,7 +622,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
                 </a>
             </li>
@@ -626,7 +630,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
                 </a>
             </li>
@@ -634,7 +638,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                     <i class="fa fa-weibo"></i><span>分享到 Weibo</span>
                 </a>
             </li>
@@ -642,7 +646,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/&amp;title=字符编码（一）">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/03/13/goldbach-conjecture/&amp;title=01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)">
                     <i class="fa fa-qq"></i><span>分享到 QQ</span>
                 </a>
             </li>
@@ -712,13 +716,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/date-formate-patterns.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <h3 class="media-heading">性能优化之 NSDateFormatter</h3>
                         </a>
                         <span class="media-meta">
@@ -737,13 +741,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/timer-leaks-unresolved.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <h3 class="media-heading">浅析 NSTimer &amp; CADisplayLink 内存泄漏</h3>
                         </a>
                         <span class="media-meta">
@@ -762,7 +766,7 @@
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                             <h3 class="media-heading">iOS 跑马灯之 TXScrollLabelView</h3>
                         </a>
                         <span class="media-meta">
@@ -781,7 +785,7 @@
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/2017-01-14-summary-2016/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/summary-2016/">
                             <h3 class="media-heading">2016 Summary</h3>
                         </a>
                         <span class="media-meta">
@@ -800,13 +804,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-plane.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <h3 class="media-heading">字符编码（一）</h3>
                         </a>
                         <span class="media-meta">
@@ -825,13 +829,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-latin-extended-additional.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <h3 class="media-heading">Swift 3.x 中 Strings/Characters 闲聊</h3>
                         </a>
                         <span class="media-meta">
@@ -850,13 +854,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <h3 class="media-heading">01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)</h3>
                         </a>
                         <span class="media-meta">
@@ -875,13 +879,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/sorting_shellsort_anim.gif" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <h3 class="media-heading">02-希尔排序 (Shell Sort)</h3>
                         </a>
                         <span class="media-meta">
@@ -900,13 +904,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <img class="media-image" src="http://image.tingxins.cn/Blog/browser-jd.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <h3 class="media-heading">iOS 中网络请求同步</h3>
                         </a>
                         <span class="media-meta">
@@ -925,13 +929,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <h3 class="media-heading">Objective-C 中的对象、类、元类</h3>
                         </a>
                         <span class="media-meta">
@@ -969,9 +973,9 @@
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/';
+                 this.page.url = 'http://tingxins.cn/2017/03/13/goldbach-conjecture/';
                  
-                    this.page.identifier = '2017/01/27/2017-01-28-character-encoding-01/';
+                    this.page.identifier = '2017/03/13/goldbach-conjecture/';
                  
              };
             (function() {

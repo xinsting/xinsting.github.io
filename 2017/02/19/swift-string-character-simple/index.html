@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="tingxins - 神奇世界">
-    <title>性能优化之 NSDateFormatter - tingxins - 神奇世界</title>
+    <title>Swift 3.x 中 Strings/Characters 闲聊 - tingxins - 神奇世界</title>
     <meta name="author" content="tingxins">
     
         <meta name="keywords" content="javascript,hexo">
@@ -17,21 +17,20 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="首先，过度的创建NSDateFormatter用于NSDate与NSString之间转换，会导致App卡顿，打开Profile工具查一下性能，你会发现这种操作占CPU比例是非常高的。">
+    <meta name="description" content="本篇文章主要浅析字符串\字符在 Swift 和 Objective-C 之间的区别及其简单用法。如有不妥的地方还望大家及时帮忙纠正。">
 <meta name="keywords" content="javascript,hexo">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="性能优化之 NSDateFormatter">
-<meta property="og:url" content="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/index.html">
+<meta property="og:title" content="Swift 3.x 中 Strings&#x2F;Characters 闲聊">
+<meta property="og:url" content="http://tingxins.cn/2017/02/19/swift-string-character-simple/index.html">
 <meta property="og:site_name" content="tingxins - 神奇世界">
-<meta property="og:description" content="首先，过度的创建NSDateFormatter用于NSDate与NSString之间转换，会导致App卡顿，打开Profile工具查一下性能，你会发现这种操作占CPU比例是非常高的。">
+<meta property="og:description" content="本篇文章主要浅析字符串\字符在 Swift 和 Objective-C 之间的区别及其简单用法。如有不妥的地方还望大家及时帮忙纠正。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="http://image.tingxins.cn/blog/date-formate-patterns.jpg">
 <meta property="og:image" content="http://image.tingxins.cn/adv/wechat-qrcode.jpg">
-<meta property="og:updated_time" content="2017-09-29T15:08:52.000Z">
+<meta property="og:updated_time" content="2017-09-30T03:18:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="性能优化之 NSDateFormatter">
-<meta name="twitter:description" content="首先，过度的创建NSDateFormatter用于NSDate与NSString之间转换，会导致App卡顿，打开Profile工具查一下性能，你会发现这种操作占CPU比例是非常高的。">
-<meta name="twitter:image" content="http://image.tingxins.cn/blog/date-formate-patterns.jpg">
+<meta name="twitter:title" content="Swift 3.x 中 Strings&#x2F;Characters 闲聊">
+<meta name="twitter:description" content="本篇文章主要浅析字符串\字符在 Swift 和 Objective-C 之间的区别及其简单用法。如有不妥的地方还望大家及时帮忙纠正。">
+<meta name="twitter:image" content="http://image.tingxins.cn/adv/wechat-qrcode.jpg">
 <meta name="twitter:creator" content="@tingxins">
     
         <link rel="publisher" href="https://plus.google.com/117623867079144390000"/>
@@ -43,9 +42,12 @@
         <meta property="og:image" content="http://image.tingxins.cn/user/avatar.jpg"/>
     
     
-        <meta property="og:image" content="http://image.tingxins.cn/blog/date-formate-patterns.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/date-formate-patterns.jpg" />
+        <meta property="og:image" content="http://image.tingxins.cn/blog/unicode-latin-extended-additional.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/unicode-latin-extended-additional.png" />
     
+    
+        <meta property="og:image" content="http://image.tingxins.cn/blog/unicode-latin-extended-additional.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/unicode-latin-extended-additional.png" />
     
     
     <!--STYLES-->
@@ -264,25 +266,35 @@
 </nav>
 
             
+        <div class="post-header-cover
+                    text-left
+                    post-header-cover--full"
+             style="background-image:url('http://image.tingxins.cn/blog/unicode-latin-extended-additional.png');"
+             data-behavior="4">
+            
+        </div>
+
             <div id="main" data-behavior="4"
-                 class="
-                        hasCoverMetaIn
-                        ">
+                 class="hasCover
+                        hasCoverMetaOut
+                        hasCoverCaption">
                 
 <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+        <span class="post-header-cover-caption caption">unicode-latin-extended-additional</span>
     
     
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            性能优化之 NSDateFormatter
+            Swift 3.x 中 Strings/Characters 闲聊
         </h1>
     
     
         <div class="post-meta">
-    <time itemprop="datePublished" datetime="2016-10-27T06:32:24+08:00">
+    <time itemprop="datePublished" datetime="2017-02-19T09:37:00+08:00">
 	
-		    10月 27, 2016
+		    2月 19, 2017
     	
     </time>
     
@@ -300,41 +312,57 @@
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <!-- excerpt --></p>
-<h2 id="为什么要优化NSDateFormatter？"><a href="#为什么要优化NSDateFormatter？" class="headerlink" title="为什么要优化NSDateFormatter？"></a>为什么要优化NSDateFormatter？</h2><h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么要优化NSDateFormatter？"><span class="toc-text">为什么要优化NSDateFormatter？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化方式有哪些？"><span class="toc-text">优化方式有哪些？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-延迟转换"><span class="toc-text">a.延迟转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-Cache-in-Memory"><span class="toc-text">b.Cache in Memory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-利用标准C语言库"><span class="toc-text">c.利用标准C语言库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关资料："><span class="toc-text">相关资料：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol>
-<p>首先，过度的创建<code>NSDateFormatter</code>用于<code>NSDate</code>与<code>NSString</code>之间转换，会导致App卡顿，打开Profile工具查一下性能，你会发现这种操作占CPU比例是非常高的。据官方说法，创建<code>NSDateFormatter</code>代价是比较高的，如果你使用的非常频繁，那么建议你缓存起来，缓存<code>NSDateFormatter</code>一定能提高效率。</p>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串判空"><span class="toc-text">字符串判空</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串长度计算"><span class="toc-text">字符串长度计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Objective-C"><span class="toc-text">Objective-C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Swift-3-0"><span class="toc-text">Swift 3.0</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Unicode-标量表示"><span class="toc-text">Unicode 标量表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可扩展的字形群集（簇）"><span class="toc-text">可扩展的字形群集（簇）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符串长度"><span class="toc-text">字符串长度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#length-与-characters-count-的区别"><span class="toc-text">.length 与 .characters.count 的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><!-- toc -->
+<p>本篇文章主要浅析字符串\字符在 Swift 和 Objective-C 之间的区别及其简单用法。如有不妥的地方还望大家及时帮忙纠正。</p>
+<h2 id="字符串判空"><a href="#字符串判空" class="headerlink" title="字符串判空"></a>字符串判空</h2><!-- toc -->
+<p>在 swift 语言中空字符串初始化方式常用的有两种：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 方式一：</div><div class="line">let testEmptyString0 = &quot;&quot;</div><div class="line"></div><div class="line">// 方式二：</div><div class="line">let testEmptyString1 = String()</div></pre></td></tr></table></figure>
+<p>在开发过程中，我们应该如何用正确的方式来对字符串进行判空处理呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 方式一：这种方式其实就是判断 characters.count 是否为0</div><div class="line">if testEmptyString0.isEmpty &#123;</div><div class="line">    // empty</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 方式二：</div><div class="line">if testEmptyString0.characters.count &#123;</div><div class="line">    // empty</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 方式三：</div><div class="line">if (testEmptyString0 as NSString).length &#123;</div><div class="line">    // empty</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="字符串长度计算"><a href="#字符串长度计算" class="headerlink" title="字符串长度计算"></a>字符串长度计算</h2><!-- toc -->
+<h3 id="Objective-C"><a href="#Objective-C" class="headerlink" title="Objective-C"></a>Objective-C</h3><!-- toc -->
+<p>首先我们来回忆一下，在 Objective-C 中字符串是怎么计算长度的？我想大家都应该知道。来看看苹果是怎么说的：</p>
 <blockquote>
-<p>Creating a date formatter is not a cheap operation. If you are likely to use a formatter frequently, it is typically more efficient to cache a single instance than to create and dispose of multiple instances. One approach is to use a static variable</p>
+<p>A string object is implemented as an array of Unicode characters (in other words, a text string). An immutable string is a text string that is defined when it is created and subsequently cannot be changed. To create and manage an immutable string, use the NSString class. To construct and manage a string that can be changed after it has been created, use NSMutableString.</p>
+<p>A string object presents itself as an array of Unicode characters. You can determine how many characters it contains with the length method and can retrieve a specific character with the characterAtIndex: method. </p>
 </blockquote>
-<h2 id="优化方式有哪些？"><a href="#优化方式有哪些？" class="headerlink" title="优化方式有哪些？"></a>优化方式有哪些？</h2><!-- toc -->
-<h3 id="a-延迟转换"><a href="#a-延迟转换" class="headerlink" title="a.延迟转换"></a>a.延迟转换</h3><!-- toc -->
-<p>即只有在<code>UI</code>需要使用转换结果时在进行转换。</p>
-<h3 id="b-Cache-in-Memory"><a href="#b-Cache-in-Memory" class="headerlink" title="b.Cache in Memory"></a>b.Cache in Memory</h3><!-- toc -->
-<p>根据<code>NSDateFormatter</code>线程安全性，不同的iOS系统版本内存缓存如下：</p>
-<ul>
-<li>prior to iOS 7  <!-- toc -->
-</li>
-</ul>
-<p>如果直接采用静态变量进行存储，那么可能就会存在线程安全问题，在iOS 7之前，<code>NSDateFormatter</code>是非线程安全的，因此可能就会有两条或以上的线程同时访问同一个日期格式化对象，从而导致App崩溃。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">+ (NSDateFormatter *)cachedDateFormatter &#123;</div><div class="line">    NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];</div><div class="line">    NSDateFormatter *dateFormatter = [threadDictionary objectForKey:@&quot;cachedDateFormatter&quot;];</div><div class="line">    if (!dateFormatter) &#123;</div><div class="line">        dateFormatter = [[NSDateFormatter alloc] init];</div><div class="line">        [dateFormatter setLocale:[NSLocale currentLocale]];</div><div class="line">        [dateFormatter setDateFormat: @&quot;YYYY-MM-dd HH:mm:ss&quot;];</div><div class="line">        [threadDictionary setObject:dateFormatter forKey:@&quot;cachedDateFormatter&quot;];</div><div class="line">    &#125;</div><div class="line">    return dateFormatter;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>iOS 7 or later  <!-- toc -->
-</li>
-</ul>
-<p>在iOS 7、macOS 10.9及以上系统版本，<code>NSDateFormatter</code>都是<code>线程安全</code>的，因此我们无需担心日期格式化对象在使用过程中被另外一条线程给修改，为了提高性能，我们还可以在上述代码块中进行简化（除去冗余部分）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">static NSDateFormatter *cachedDateFormatter = nil;</div><div class="line"> </div><div class="line">+ (NSDateFormatter *)cachedDateFormatter &#123;</div><div class="line">    NSMutableDictionary </div><div class="line">    // If the date formatters aren&apos;t already set up, create them and cache them for reuse.</div><div class="line">    if (!dateFormatter) &#123;</div><div class="line">        dateFormatter = [[NSDateFormatter alloc] init];</div><div class="line">        [dateFormatter setLocale:[NSLocale currentLocale]];</div><div class="line">        [dateFormatter setDateFormat: @&quot;YYYY-MM-dd HH:mm:ss&quot;];</div><div class="line">    &#125;</div><div class="line">    return dateFormatter;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果缓存了日期格式化或者是其他依赖于<code>current locale</code>的对象，那么我们应该监听<code>NSCurrentLocaleDidChangeNotification</code>通知，当<code>current locale</code>变化时及时更新被缓存的日期格式化对象。</p>
+<p>看完这段话，想必大家都明白 NSString 是怎么实现的，以及如何获取其长度。通过 length 方法即可，那么 length 方法是如何实现的呢？苹果官方是这样说的：length 方法利用的是 UTF-16 表示的十六位编码单元数字为单位进行计算的（The number of UTF-16 code units in the receiver.）。UTF-16是什么？（感兴趣的童鞋可以看一下我之前写的一篇文章，<a href="https://tingxins.com/2017/01/character-encoding-01/" target="_blank" rel="external">字符编码（一）</a>），此处不再详述。</p>
+<h3 id="Swift-3-0"><a href="#Swift-3-0" class="headerlink" title="Swift 3.0"></a>Swift 3.0</h3><!-- toc -->
+<h4 id="Unicode-标量表示"><a href="#Unicode-标量表示" class="headerlink" title="Unicode 标量表示"></a>Unicode 标量表示</h4><!-- toc -->
+<p>在 Swift 中，字符和字符串都是基于 Unicode 标量建立的，采用21位二进制进行编码，共17个平面（除了基本多文种平面中的 UTF-16 代理对码位外，即U+D800至U+DFFF的编码空间），也就是说编码范围是U+0000-U+D7FFF 或者 U+E000-U+10FFFF。</p>
 <blockquote>
-<p>In theory you could use an auto-updating locale (autoupdatingCurrentLocale) to create a locale that automatically accounts for changes in the user’s locale settings. In practice this currently does not work with date formatters.</p>
+<p>A Unicode scalar is any Unicode code point in the range U+0000 to U+D7FF inclusive or U+E000 to U+10FFFF inclusive. Unicode scalars do not include the Unicode surrogate pair code points, which are the code points in the range U+D800 to U+DFFF inclusive.”</p>
 </blockquote>
-<p><a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Multithreading/ThreadSafetySummary/ThreadSafetySummary.html" target="_blank" rel="external">Apple Threading Programming Guide</a></p>
-<h3 id="c-利用标准C语言库"><a href="#c-利用标准C语言库" class="headerlink" title="c.利用标准C语言库"></a>c.利用标准C语言库</h3><!-- toc -->
-<p>如果时间日期格式是固定的，我们可以采用C语言中的strptime函数，这样更加简单高效。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">- (NSDate *) easyDateFormatter&#123;</div><div class="line">    <span class="keyword">time_t</span> t;</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">tm</span> <span class="title">tm</span>;</span></div><div class="line">    <span class="keyword">char</span> *iso8601 = <span class="string">"2016-09-18"</span>;</div><div class="line">    strptime(iso8601, <span class="string">"%Y-%m-%d"</span>, &amp;tm);</div><div class="line">    tm.tm_isdst = <span class="number">-1</span>;</div><div class="line">    tm.tm_hour = <span class="number">0</span>;<span class="comment">//当tm结构体中的tm.tm_hour为负数，会导致mktime(&amp;tm)计算错误</span></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     //NSString *iso8601String = @"2016-09-18T17:30:08+08:00";</span></div><div class="line"><span class="comment">     //%Y-%m-%d [iso8601String cStringUsingEncoding:NSUTF8StringEncoding]</span></div><div class="line"><span class="comment">     &#123;</span></div><div class="line"><span class="comment">         tm_sec = 0</span></div><div class="line"><span class="comment">         tm_min = 0</span></div><div class="line"><span class="comment">         tm_hour = 0</span></div><div class="line"><span class="comment">         tm_mday = 18</span></div><div class="line"><span class="comment">         tm_mon = 9</span></div><div class="line"><span class="comment">         tm_year = 116</span></div><div class="line"><span class="comment">         tm_wday = 2</span></div><div class="line"><span class="comment">         tm_yday = 291</span></div><div class="line"><span class="comment">         tm_isdst = 0</span></div><div class="line"><span class="comment">         tm_gmtoff = 28800</span></div><div class="line"><span class="comment">         tm_zone = 0x00007fd9b600c31c "CST"</span></div><div class="line"><span class="comment">     &#125;</span></div><div class="line"><span class="comment">     ISO8601时间格式：2004-05-03T17:30:08+08:00 参考Wikipedia</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    t = mktime(&amp;tm);</div><div class="line">    <span class="comment">//http://pubs.opengroup.org/onlinepubs/9699919799/functions/mktime.html</span></div><div class="line">    <span class="comment">//secondsFromGMT: The current difference in seconds between the receiver and Greenwich Mean Time.</span></div><div class="line">    <span class="keyword">return</span> [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="相关资料："><a href="#相关资料：" class="headerlink" title="相关资料："></a>相关资料：</h2><!-- toc -->
-<p><a href="http://www.unicode.org/reports/tr35/tr35-25.html#Date_Format_Patterns" target="_blank" rel="external">Date Formate Patterns</a> :<br><img src="http://image.tingxins.cn/blog/date-formate-patterns.jpg" alt="Date Formate Patterns"></p>
-<p><a href="http://www.gnu.org/software/libc/" target="_blank" rel="external">Standard C library</a></p>
-<p><a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="external">ISO_8601</a></p>
-<h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><p>欢迎关注微信公众号</p>
+<p>因此在 Swift 中，我们可直接采用 Unicode 标量的形式来表示字符或字符串，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let tingC = &quot;\u&#123;542C&#125;&quot; // 听</div><div class="line"></div><div class="line">let xinC = &quot;\u&#123;5FC3&#125;&quot; // 心</div></pre></td></tr></table></figure>
+<h4 id="可扩展的字形群集（簇）"><a href="#可扩展的字形群集（簇）" class="headerlink" title="可扩展的字形群集（簇）"></a>可扩展的字形群集（簇）</h4><!-- toc -->
+<p>在 Swift 中，每一个 Character 类型实例都代表单个可扩展的字形群集——即由一个或多个 Unicode 标量的序列组成的一个可读字符。</p>
+<p>汉字 “听” 拼音为 tīng，以字母 ī 为例，用两种方式表示。第一种，可以直接用单个 Unicode 标量 ī (LATIN SMALL LETTER I WITH MACRON) 来表示，即 U+012B，该字形群集中包含一个 Unicode 标量。第二种，可以采用两个 Unicode 标量来表示，一个拉丁字母 i (LATIN SMALL LETTER I) 加上一个音调符（元音，COMBINING MACRON ACCENT）的标量，即 U+0069 U+0304，这样，当字母 i 被 Unicode 文字渲染系统时就会转换成 ī，该字形群集中包含两个 Unicode 标量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let tingO = &quot;t&quot; + &quot;\u&#123;0069&#125;&quot; + &quot;ng&quot; // Prints &quot;ting &quot;</div><div class="line"></div><div class="line">let tingPS = &quot;t&quot; + &quot;\u&#123;0069&#125;&quot; + &quot;\u&#123;0304&#125;&quot; + &quot;ng&quot; // Prints &quot;tīng&quot;</div><div class="line"></div><div class="line">let tingPD = &quot;t&quot; + &quot;\u&#123;012B&#125;&quot; + &quot;ng&quot; // Prints &quot;tīng&quot;</div></pre></td></tr></table></figure>
+<p>这两种情况中，字母 ī 即代表了 Swift 中单个 Character 类型实例，也代表了一个可扩展的字形群集。<a href="http://unicode.org/reports/tr29/#Default_Grapheme_Cluster_Table" target="_blank" rel="external">想了解更多关于可扩展的字形群集，可参考此链接</a>。</p>
+<h4 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h4><!-- toc -->
+<p>我们已经简单了解了可扩展的字形群集，现在我们再来看看 Swift 字符串中一些有意思的事。</p>
+<p>Swift 中 String 类型，说白了就是 Character 类型实例的集合，在开发过程中，我们一般采用两种方式来求字符串的长度，第一种是转成 Objective-C 中的 NSString 类型，通过 length 方法来获取其长度，第二种是通过字符串属性 characters.count 的方式获得。本小节主要讨论第二种，本文会在结尾针对这两种方式进行比较。</p>
+<p>在 Swift 中，细心的同学或许已经发现 tingPD 与 tingPS 字符串的字符数量是一样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">print(&quot;tingPD-Count:\(tingPD.characters.count), tingPS-Count:\(tingPS.characters.count)&quot;) </div><div class="line">// Prints &quot;tingPD-Count:4, tingPS-Count:4&quot;</div></pre></td></tr></table></figure>
+<p>下面我们来解决此疑惑，笔者已在前文说过，Swift 中 String\Character 都是基于 Unicode 标量建立的，且 String 是 Character 的集合（即包含关系），而 String 属性 characters.count 其实就是计算 Character 的数量，那么 character 是怎么定义的呢，或者说什么才算是一个 character？此时又引出了一个概念——字形群集界限（Grapheme Cluster Boundaries），而”什么才算是一个 character？“这个问题就是字形群集界限给出的答案，想深入了解的同学请看：<a href="http://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries" target="_blank" rel="external">传送门</a>。从用户感观（user-perceived）角度讲，不管是字符 ī(U+012B) 或者是 i(U+0069) 再加上一个音调符（U+0304），这两种表示最终的结果都是组成一个相同的可读的字符，因此 tingPD 与 tingPS 字符串中的字符数量是一样的。</p>
+<p>通过上文的简单解释，可以得出两个结论：</p>
+<ol>
+<li><p>一个字符串拼接一个字符时，不一定会更改字符串的数量，即 characters.count 的值。</p>
+</li>
+<li><p>在没有获取到字形群集界限的时候，无法计算出该字符串的字符数量，因此必须遍历字符串中全部的 Unicode 标量以获取字形群集界限，进而确定字符串的字符数量。</p>
+</li>
+</ol>
+<p>下面在看一个例子，相信大家都已明白输出结果的原因：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var iWord = &quot;i&quot;</div><div class="line"></div><div class="line">print(&quot;iword-Count: \(iWord.characters.count)&quot;)</div><div class="line">// Prints &quot;iword-Count: 1&quot;</div><div class="line"></div><div class="line">iWord += &quot;\u&#123;0304&#125;&quot; // ī</div><div class="line">print(&quot;iword-Count: \(iWord.characters.count)&quot;)</div><div class="line">// Prints &quot;iword-Count: 1&quot;</div></pre></td></tr></table></figure>
+<h3 id="length-与-characters-count-的区别"><a href="#length-与-characters-count-的区别" class="headerlink" title=".length 与 .characters.count 的区别"></a>.length 与 .characters.count 的区别</h3><!-- toc -->
+<p>首先 .length 是 Objective-C 中字符串长度计算方法，而 .characters.count 可以说是 Swift 中字符串长度计算方法，由于 Swift 中 String 类型可以转成 Objective-C 中的 NSString 类型，因此在 Swift 开发过程中可能有如下两种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">print(&quot;tingPS.characters.count&quot;)</div><div class="line">// Prints &quot;4&quot;</div><div class="line">print(&quot;(tingPS as NSString).length&quot;)</div><div class="line">// Prints &quot;5&quot;</div></pre></td></tr></table></figure>
+<p>从上述结果可看出，.length 方法得到的字符串长度为5，而 .characters.count 等于4，可能读者会有点懵，同一个字符串怎么计算的长度不一致？其实 .length 与 .characters.count 的计算原理在上文已经做了解释，本小节就简单总结一下：</p>
+<p>.length 与 .characters.count 返回值不总是相同的，.length 方法是采用 UTF-16 表示的编码单元为单位进行计算并返回的，即字母 i(U+0069) 、音调符（U+0304）会当做两个字符，因而长度为2。.character.count 的值是通过字形群集界限来确定字符数量的，如还不理解请查看上文。（PS：其实这里也是 Swift 中采用索引的方式访问字符串的原因）</p>
+<h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><!-- toc -->
+<p>欢迎关注微信公众号</p>
 <p><img src="http://image.tingxins.cn/adv/wechat-qrcode.jpg" alt="wechat-qrcode"></p>
             
         </div>
@@ -344,7 +372,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/性能优化/">性能优化</a> <a class="tag tag--primary tag--small t-link" href="/tags/性能优化之NSDateFormatter/">性能优化之NSDateFormatter</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Swift/">Swift</a> <a class="tag tag--primary tag--small t-link" href="/tags/字符/">字符</a> <a class="tag tag--primary tag--small t-link" href="/tags/字符串/">字符串</a>
 
             </div>
         
@@ -354,7 +382,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/"  data-tooltip="浅析 NSTimer &amp; CADisplayLink 内存泄漏">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/13/goldbach-conjecture/"  data-tooltip="01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -362,7 +390,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/27/character-encoding-01/" data-tooltip="字符编码（一）">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -380,7 +408,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -388,7 +416,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -396,7 +424,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -404,7 +432,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -412,7 +440,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/&amp;title=性能优化之 NSDateFormatter">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/02/19/swift-string-character-simple/&amp;title=Swift 3.x 中 Strings/Characters 闲聊">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -465,7 +493,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/"  data-tooltip="浅析 NSTimer &amp; CADisplayLink 内存泄漏">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/13/goldbach-conjecture/"  data-tooltip="01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -473,7 +501,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/27/character-encoding-01/" data-tooltip="字符编码（一）">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -491,7 +519,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -499,7 +527,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -507,7 +535,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -515,7 +543,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -523,7 +551,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/&amp;title=性能优化之 NSDateFormatter">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/02/19/swift-string-character-simple/&amp;title=Swift 3.x 中 Strings/Characters 闲聊">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -554,7 +582,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
                 </a>
             </li>
@@ -562,7 +590,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
                 </a>
             </li>
@@ -570,7 +598,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
                 </a>
             </li>
@@ -578,7 +606,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                     <i class="fa fa-weibo"></i><span>分享到 Weibo</span>
                 </a>
             </li>
@@ -586,7 +614,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/&amp;title=性能优化之 NSDateFormatter">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/02/19/swift-string-character-simple/&amp;title=Swift 3.x 中 Strings/Characters 闲聊">
                     <i class="fa fa-qq"></i><span>分享到 QQ</span>
                 </a>
             </li>
@@ -656,13 +684,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/date-formate-patterns.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <h3 class="media-heading">性能优化之 NSDateFormatter</h3>
                         </a>
                         <span class="media-meta">
@@ -681,13 +709,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/timer-leaks-unresolved.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <h3 class="media-heading">浅析 NSTimer &amp; CADisplayLink 内存泄漏</h3>
                         </a>
                         <span class="media-meta">
@@ -706,7 +734,7 @@
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                             <h3 class="media-heading">iOS 跑马灯之 TXScrollLabelView</h3>
                         </a>
                         <span class="media-meta">
@@ -725,7 +753,7 @@
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/2017-01-14-summary-2016/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/summary-2016/">
                             <h3 class="media-heading">2016 Summary</h3>
                         </a>
                         <span class="media-meta">
@@ -744,13 +772,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-plane.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <h3 class="media-heading">字符编码（一）</h3>
                         </a>
                         <span class="media-meta">
@@ -769,13 +797,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-latin-extended-additional.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <h3 class="media-heading">Swift 3.x 中 Strings/Characters 闲聊</h3>
                         </a>
                         <span class="media-meta">
@@ -794,13 +822,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <h3 class="media-heading">01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)</h3>
                         </a>
                         <span class="media-meta">
@@ -819,13 +847,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/sorting_shellsort_anim.gif" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <h3 class="media-heading">02-希尔排序 (Shell Sort)</h3>
                         </a>
                         <span class="media-meta">
@@ -844,13 +872,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <img class="media-image" src="http://image.tingxins.cn/Blog/browser-jd.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <h3 class="media-heading">iOS 中网络请求同步</h3>
                         </a>
                         <span class="media-meta">
@@ -869,13 +897,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <h3 class="media-heading">Objective-C 中的对象、类、元类</h3>
                         </a>
                         <span class="media-meta">
@@ -913,9 +941,9 @@
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/';
+                 this.page.url = 'http://tingxins.cn/2017/02/19/swift-string-character-simple/';
                  
-                    this.page.identifier = '2016/10/27/2016-10-27-NSDateFormatter/';
+                    this.page.identifier = '2017/02/19/swift-string-character-simple/';
                  
              };
             (function() {

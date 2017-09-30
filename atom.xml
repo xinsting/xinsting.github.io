@@ -46,8 +46,8 @@
   
   <entry>
     <title>iOS 主题/皮肤之 SakuraKit</title>
-    <link href="http://tingxins.cn/2017/08/27/2017-08-27-ios-theme-skin-resolution/"/>
-    <id>http://tingxins.cn/2017/08/27/2017-08-27-ios-theme-skin-resolution/</id>
+    <link href="http://tingxins.cn/2017/08/27/ios-theme-skin-resolution/"/>
+    <id>http://tingxins.cn/2017/08/27/ios-theme-skin-resolution/</id>
     <published>2017-08-27T06:30:00.000Z</published>
     <updated>2017-09-30T17:09:21.000Z</updated>
     
@@ -68,8 +68,8 @@
   
   <entry>
     <title>What&#39;s New in Swift 4 ?</title>
-    <link href="http://tingxins.cn/2017/07/11/2017-07-09-whats-new-in-swift4/"/>
-    <id>http://tingxins.cn/2017/07/11/2017-07-09-whats-new-in-swift4/</id>
+    <link href="http://tingxins.cn/2017/07/11/whats-new-in-swift-4/"/>
+    <id>http://tingxins.cn/2017/07/11/whats-new-in-swift-4/</id>
     <published>2017-07-11T07:01:30.000Z</published>
     <updated>2017-09-29T11:18:10.000Z</updated>
     
@@ -90,8 +90,8 @@
   
   <entry>
     <title>self.delegate = self ?</title>
-    <link href="http://tingxins.cn/2017/07/01/2017-06-04-about-delegate-oc/"/>
-    <id>http://tingxins.cn/2017/07/01/2017-06-04-about-delegate-oc/</id>
+    <link href="http://tingxins.cn/2017/07/01/about-delegate-oc/"/>
+    <id>http://tingxins.cn/2017/07/01/about-delegate-oc/</id>
     <published>2017-07-01T07:23:00.000Z</published>
     <updated>2017-09-29T13:32:43.000Z</updated>
     
@@ -106,16 +106,16 @@
       <category term="普文" scheme="http://tingxins.cn/categories/%E6%99%AE%E6%96%87/"/>
     
     
-      <category term="Objective-C" scheme="http://tingxins.cn/tags/Objective-C/"/>
-    
       <category term="Delegate" scheme="http://tingxins.cn/tags/Delegate/"/>
+    
+      <category term="Objective-C" scheme="http://tingxins.cn/tags/Objective-C/"/>
     
   </entry>
   
   <entry>
     <title>iOS 输入限制之 InputKit</title>
-    <link href="http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/"/>
-    <id>http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/</id>
+    <link href="http://tingxins.cn/2017/06/28/input-kit-introduction/"/>
+    <id>http://tingxins.cn/2017/06/28/input-kit-introduction/</id>
     <published>2017-06-28T07:22:00.000Z</published>
     <updated>2017-09-29T12:23:16.000Z</updated>
     
@@ -132,8 +132,6 @@
     
       <category term="Objective-C" scheme="http://tingxins.cn/tags/Objective-C/"/>
     
-      <category term="Swift" scheme="http://tingxins.cn/tags/Swift/"/>
-    
       <category term="InputText" scheme="http://tingxins.cn/tags/InputText/"/>
     
       <category term="UI" scheme="http://tingxins.cn/tags/UI/"/>
@@ -142,12 +140,14 @@
     
       <category term="TextField" scheme="http://tingxins.cn/tags/TextField/"/>
     
+      <category term="Swift" scheme="http://tingxins.cn/tags/Swift/"/>
+    
   </entry>
   
   <entry>
     <title>Objective-C 中的对象、类、元类</title>
-    <link href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/"/>
-    <id>http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/</id>
+    <link href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/"/>
+    <id>http://tingxins.cn/2017/05/30/metaclass-class-relationship/</id>
     <published>2017-05-30T07:22:00.000Z</published>
     <updated>2017-09-29T11:55:44.000Z</updated>
     
@@ -174,8 +174,8 @@
   
   <entry>
     <title>iOS 中网络请求同步</title>
-    <link href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/"/>
-    <id>http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/</id>
+    <link href="http://tingxins.cn/2017/04/30/synchronous-gcd/"/>
+    <id>http://tingxins.cn/2017/04/30/synchronous-gcd/</id>
     <published>2017-04-29T16:00:00.000Z</published>
     <updated>2017-09-29T13:18:50.000Z</updated>
     
@@ -204,8 +204,8 @@
   
   <entry>
     <title>02-希尔排序 (Shell Sort)</title>
-    <link href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/"/>
-    <id>http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/</id>
+    <link href="http://tingxins.cn/2017/03/16/shell-sort/"/>
+    <id>http://tingxins.cn/2017/03/16/shell-sort/</id>
     <published>2017-03-16T07:21:00.000Z</published>
     <updated>2017-09-30T03:02:58.000Z</updated>
     
@@ -230,8 +230,8 @@
   
   <entry>
     <title>01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)</title>
-    <link href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/"/>
-    <id>http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/</id>
+    <link href="http://tingxins.cn/2017/03/13/goldbach-conjecture/"/>
+    <id>http://tingxins.cn/2017/03/13/goldbach-conjecture/</id>
     <published>2017-03-13T07:16:00.000Z</published>
     <updated>2017-09-30T03:05:09.000Z</updated>
     
@@ -254,8 +254,8 @@
   
   <entry>
     <title>Swift 3.x 中 Strings/Characters 闲聊</title>
-    <link href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/"/>
-    <id>http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/</id>
+    <link href="http://tingxins.cn/2017/02/19/swift-string-character-simple/"/>
+    <id>http://tingxins.cn/2017/02/19/swift-string-character-simple/</id>
     <published>2017-02-19T01:37:00.000Z</published>
     <updated>2017-09-30T03:18:01.000Z</updated>
     
@@ -270,18 +270,18 @@
       <category term="普文" scheme="http://tingxins.cn/categories/%E6%99%AE%E6%96%87/"/>
     
     
+      <category term="字符" scheme="http://tingxins.cn/tags/%E5%AD%97%E7%AC%A6/"/>
+    
       <category term="Swift" scheme="http://tingxins.cn/tags/Swift/"/>
     
       <category term="字符串" scheme="http://tingxins.cn/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-      <category term="字符" scheme="http://tingxins.cn/tags/%E5%AD%97%E7%AC%A6/"/>
     
   </entry>
   
   <entry>
     <title>字符编码（一）</title>
-    <link href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/"/>
-    <id>http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/</id>
+    <link href="http://tingxins.cn/2017/01/27/character-encoding-01/"/>
+    <id>http://tingxins.cn/2017/01/27/character-encoding-01/</id>
     <published>2017-01-27T07:14:00.000Z</published>
     <updated>2017-09-29T13:17:46.000Z</updated>
     
@@ -308,8 +308,8 @@
   
   <entry>
     <title>2016 Summary</title>
-    <link href="http://tingxins.cn/2017/01/13/2017-01-14-summary-2016/"/>
-    <id>http://tingxins.cn/2017/01/13/2017-01-14-summary-2016/</id>
+    <link href="http://tingxins.cn/2017/01/13/summary-2016/"/>
+    <id>http://tingxins.cn/2017/01/13/summary-2016/</id>
     <published>2017-01-13T07:14:00.000Z</published>
     <updated>2017-09-29T12:37:58.000Z</updated>
     
@@ -330,8 +330,8 @@
   
   <entry>
     <title>iOS 跑马灯之 TXScrollLabelView</title>
-    <link href="http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/"/>
-    <id>http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/</id>
+    <link href="http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/"/>
+    <id>http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/</id>
     <published>2016-11-20T04:41:18.000Z</published>
     <updated>2017-09-29T13:17:20.000Z</updated>
     
@@ -354,8 +354,8 @@
   
   <entry>
     <title>浅析 NSTimer &amp; CADisplayLink 内存泄漏</title>
-    <link href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/"/>
-    <id>http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/</id>
+    <link href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/"/>
+    <id>http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/</id>
     <published>2016-11-02T17:06:38.000Z</published>
     <updated>2017-09-29T15:08:41.000Z</updated>
     
@@ -382,8 +382,8 @@
   
   <entry>
     <title>性能优化之 NSDateFormatter</title>
-    <link href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/"/>
-    <id>http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/</id>
+    <link href="http://tingxins.cn/2016/10/27/ns-date-formatter/"/>
+    <id>http://tingxins.cn/2016/10/27/ns-date-formatter/</id>
     <published>2016-10-26T22:32:24.000Z</published>
     <updated>2017-09-29T15:08:52.000Z</updated>
     

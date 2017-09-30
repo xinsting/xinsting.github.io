@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="tingxins - 神奇世界">
-    <title>iOS 输入限制之 InputKit - tingxins - 神奇世界</title>
+    <title>Objective-C 中的对象、类、元类 - tingxins - 神奇世界</title>
     <meta name="author" content="tingxins">
     
         <meta name="keywords" content="javascript,hexo">
@@ -17,22 +17,22 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="最近接手了两个 O2O 的老项目，其中的 Bug 也不言而喻，单看项目中的布局就有 n 种不同的方式，有用纯代码的，有用 Masonry 的，有用 VFL 的…">
+    <meta name="description" content="本文我们将复习一下 Objective-C 中的一些关于类的知识。在开发过程中，类与对象相信大家再熟悉不过了…">
 <meta name="keywords" content="javascript,hexo">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="iOS 输入限制之 InputKit">
-<meta property="og:url" content="http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/index.html">
+<meta property="og:title" content="Objective-C 中的对象、类、元类">
+<meta property="og:url" content="http://tingxins.cn/2017/05/30/metaclass-class-relationship/index.html">
 <meta property="og:site_name" content="tingxins - 神奇世界">
-<meta property="og:description" content="最近接手了两个 O2O 的老项目，其中的 Bug 也不言而喻，单看项目中的布局就有 n 种不同的方式，有用纯代码的，有用 Masonry 的，有用 VFL 的…">
+<meta property="og:description" content="本文我们将复习一下 Objective-C 中的一些关于类的知识。在开发过程中，类与对象相信大家再熟悉不过了…">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="http://image.tingxins.cn/InputKit/inputKit-demo-price.gif">
-<meta property="og:image" content="http://image.tingxins.cn/InputKit/inputKit-demo-custom.gif">
+<meta property="og:image" content="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class.png">
+<meta property="og:image" content="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-loginfos.png">
 <meta property="og:image" content="http://image.tingxins.cn/adv/wechat-qrcode.jpg">
-<meta property="og:updated_time" content="2017-09-29T12:23:16.000Z">
+<meta property="og:updated_time" content="2017-09-29T11:55:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS 输入限制之 InputKit">
-<meta name="twitter:description" content="最近接手了两个 O2O 的老项目，其中的 Bug 也不言而喻，单看项目中的布局就有 n 种不同的方式，有用纯代码的，有用 Masonry 的，有用 VFL 的…">
-<meta name="twitter:image" content="http://image.tingxins.cn/InputKit/inputKit-demo-price.gif">
+<meta name="twitter:title" content="Objective-C 中的对象、类、元类">
+<meta name="twitter:description" content="本文我们将复习一下 Objective-C 中的一些关于类的知识。在开发过程中，类与对象相信大家再熟悉不过了…">
+<meta name="twitter:image" content="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class.png">
 <meta name="twitter:creator" content="@tingxins">
     
         <link rel="publisher" href="https://plus.google.com/117623867079144390000"/>
@@ -44,12 +44,12 @@
         <meta property="og:image" content="http://image.tingxins.cn/user/avatar.jpg"/>
     
     
-        <meta property="og:image" content="http://image.tingxins.cn/InputKit/InputKit-logo2-dynamic.gif"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/InputKit/InputKit-logo2-dynamic.gif" />
+        <meta property="og:image" content="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png" />
     
     
-        <meta property="og:image" content="http://image.tingxins.cn/InputKit/InputKit-logo2-dynamic.gif"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/InputKit/InputKit-logo2-dynamic.gif" />
+        <meta property="og:image" content="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png" />
     
     
     <!--STYLES-->
@@ -271,7 +271,7 @@
         <div class="post-header-cover
                     text-left
                     post-header-cover--full"
-             style="background-image:url('http://image.tingxins.cn/InputKit/InputKit-logo2-dynamic.gif');"
+             style="background-image:url('http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png');"
              data-behavior="4">
             
         </div>
@@ -283,26 +283,26 @@
                 
 <article class="post" itemscope itemType="http://schema.org/BlogPosting">
     
-        <span class="post-header-cover-caption caption">📝InputKit, an elegant kit to limits your input text, inspired by BlocksKit, written in both Objective-C &amp; ⚡️Swift⚡️.</span>
+        <span class="post-header-cover-caption caption">对象、类、元类</span>
     
     
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            iOS 输入限制之 InputKit
+            Objective-C 中的对象、类、元类
         </h1>
     
     
         <div class="post-meta">
-    <time itemprop="datePublished" datetime="2017-06-28T15:22:00+08:00">
+    <time itemprop="datePublished" datetime="2017-05-30T15:22:00+08:00">
 	
-		    6月 28, 2017
+		    5月 30, 2017
     	
     </time>
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/categories/开源/">开源</a>
+    <a class="category-link" href="/categories/普文/">普文</a>
 
 
     
@@ -314,45 +314,48 @@
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <!-- excerpt --></p>
-<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#InputKit"><span class="toc-text">InputKit</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#解耦"><span class="toc-text">解耦</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bug"><span class="toc-text">Bug</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开源"><span class="toc-text">开源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol></li></ol>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><!-- toc -->
-<p>最近接手了两个 O2O 的老项目，其中的 Bug 也不言而喻，单看项目中的布局就有 n 种不同的方式，有用纯代码的，有用 Masonry 的，有用 VFL 的，也有用 Xib 的，更有用代码约束等等等，🐮。不扯远了，回归正题。</p>
-<p>由于这两个项目是 O2O 项目，因此针对输入组件的限制相比其他类型的项目要多一些，比如商品价格输入（如：保留3位整数，2位小数等）、买家留言字数限制、不能输入中文、不能输入英文、只能输入数字等等限制。</p>
-<p>于是输入限制 <a href="https://github.com/tingxins/InputKit" target="_blank" rel="external">InputKit</a> 诞生了！本文主要简单介绍 <a href="https://github.com/tingxins/InputKit" target="_blank" rel="external">InputKit</a> 的使用及相关注意事项。</p>
-<h1 id="InputKit"><a href="#InputKit" class="headerlink" title="InputKit"></a><a href="https://github.com/tingxins/InputKit" target="_blank" rel="external">InputKit</a></h1><!-- toc -->
-<p><a href="https://github.com/tingxins/InputKit" target="_blank" rel="external">InputKit</a> 是一个轻量级的，专门用于做输入限制的第三方库，灵感源自 <a href="https://github.com/BlocksKit/BlocksKit" target="_blank" rel="external">BlocksKit</a>，在项目中，主要为了解决三个问题：</p>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是类？"><span class="toc-text">什么是类？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是对象？"><span class="toc-text">什么是对象？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是元类？"><span class="toc-text">什么是元类？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象、类与元类的关系"><span class="toc-text">对象、类与元类的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解与探究"><span class="toc-text">理解与探究</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解"><span class="toc-text">理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#探究"><span class="toc-text">探究</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#By-the-way-happy-Children’s-Day-🤡🤡🤡"><span class="toc-text">By the way, happy Children’s Day!🤡🤡🤡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><!-- toc -->
+<p>现在写文章拖延症特别严重啊 (😂)……</p>
+<p>本文我们将复习一下 Objective-C 中的一些关于类的知识。</p>
+<p>在开发过程中，类与对象相信大家再熟悉不过了，有时我们也会接触一个比较陌生的概念，元类（metaclass），甚至在回头来想时，发现类与对象是什么都开始犯糊涂了，本文主要探讨这三者之间的关系以及在消息转发中各自扮演的角色，希望读者看完本文能有所收获。如有不妥的地方还望大家及时帮忙纠正。</p>
+<h2 id="什么是类？"><a href="#什么是类？" class="headerlink" title="什么是类？"></a>什么是类？</h2><!-- toc -->
+<p>在面向对象编程语言中，<strong>类</strong>是一个非常重要的概念，理解了它，能更好的造轮子、能更好的面向对象编程、能写出模块化的代码、更能提高代码的可读性及后期维护性。</p>
+<p><code>类</code>是数据及行为的封装体，在 Objective-C 中，在数据上，<code>类</code>定义了内存分配大小、内存布局以及成员变量数据类型等，在行为上，<code>类</code>定义了实例方法等。我们可以简单的把<code>类</code>比作为某个产品的设计稿。</p>
+<p>通过查阅 Apple 官方开源的 objc 源码（官方最新版—&gt;<a href="https://opensource.apple.com/source/objc4/objc4-709/" target="_blank" rel="external">传送门</a>），得知类的数据结构（其中字段本文不做解释，可自行 Google），如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">typedef struct objc_class *Class;</div><div class="line"></div><div class="line">struct objc_class : objc_object &#123;</div><div class="line">    // Class ISA;</div><div class="line">    Class superclass;</div><div class="line">    // formerly cache pointer and vtable</div><div class="line">    cache_t cache;  </div><div class="line">    // class_rw_t * plus custom rr/alloc flags              </div><div class="line">    class_data_bits_t bits;    </div><div class="line"></div><div class="line">    class_rw_t *data() &#123; </div><div class="line">        return bits.data();</div><div class="line">    &#125;</div><div class="line">    .</div><div class="line">    .</div><div class="line">    .</div><div class="line">    ...(省略)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看完这小段代码，细心的同学会发现，objc_class 继承自 objc_object，没错，类其实也是一个对象，既然类是一个对象，那么它一定是某个类的实例。先不讨论此问题，我们先来谈谈对象。</p>
+<h2 id="什么是对象？"><a href="#什么是对象？" class="headerlink" title="什么是对象？"></a>什么是对象？</h2><!-- toc -->
+<p><strong>对象</strong>一定是某个<code>类</code>具体的一个实例，可以简单理解为<code>类</code>的“值”，可直接使用，就像洗衣机（<code>对象</code>）一样可以直接用来洗衣服（<code>数据</code>），但洗衣机的设计稿（<code>类</code>）却不能。对象具有动态性，它有自己的生命周期，对象在生命周期结束时会调用 dealloc 方法。</p>
+<p>在 Objective-C 中，含有一个 isa 指针并且可以正确指向某个类的数据结构，都可以视作为一个对象，其中 isa 指针指向当前对象所属的类。通过查阅 Apple 官方开源的 objc 源码（官方最新版—&gt;<a href="https://opensource.apple.com/source/objc4/objc4-709/" target="_blank" rel="external">传送门</a>），得知类的数据结构（其中字段本文不做解释，可自行 Google），如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">struct objc_object &#123;</div><div class="line">private:</div><div class="line">    isa_t isa;</div><div class="line">    .</div><div class="line">    .</div><div class="line">    .</div><div class="line">    ...(省略)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>每当要向某个对象发送一个消息时，都会通过 isa 指针找到该对象所属的类（因为类定义了对象的<strong>行为</strong>），然后再遍历其方法缓存表或者方法列表（行为），通过 SEL 找到后取出方法（Method）中的 IMP 函数入口指针，并执行该函数，如果找不到该方法，则进入消息转发等等，此处本文不做概述。</p>
+<p>讨论完对象之后，我们再来回顾上文遗留的一个问题：类既然是一个对象，那么这个对象的类是什么呢？<br>接下来我们将讨论此问题。</p>
+<h2 id="什么是元类？"><a href="#什么是元类？" class="headerlink" title="什么是元类？"></a>什么是元类？</h2><!-- toc -->
+<p><strong>元类</strong>是类对象的类。简单的说类描述的是对象，那么元类描述的就是类。同理，元类定义了类的行为（类方法），每当要向某个类发送一个消息时，都会通过 isa 指针找到该类所属的元类，然后遍历其方法缓存表或者方法列表，通过 SEL 找到后取出方法中的 IMP 函数入口指针，并执行该方法，否则进行消息转发阶段等等。</p>
+<p>说到元类，那么定会有人问，元类的类是什么？元类也是一个对象，元类的类是根元类，根元类在继承体系中是根类的元类，那么根类的元类是属于哪个类呢？根元类的类就是自己（即 isa 指针指向自己），根元类的父类 superClass 指针指向 根类。</p>
+<h2 id="对象、类与元类的关系"><a href="#对象、类与元类的关系" class="headerlink" title="对象、类与元类的关系"></a>对象、类与元类的关系</h2><!-- toc -->
+<p>Greg Parker (@<a href="https://twitter.com/gparker" target="_blank" rel="external">gparker</a>) 给出了一张图，使得整个结构清晰明了：</p>
+<p><img src="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class.png" alt="instance-class-meta_class"></p>
+<h2 id="理解与探究"><a href="#理解与探究" class="headerlink" title="理解与探究"></a>理解与探究</h2><!-- toc -->
+<h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><!-- toc -->
+<p>如果上述都理解了，那么下面这段代码看懂就没问题了。 -(IMP)methodForSelector:(SEL)aSelector 是 NSObject 类的一个实例方法，以下两种调用方式都是正确的：</p>
 <ul>
-<li>解耦</li>
-<li>需求</li>
-<li>Bug</li>
+<li>[NSObject methodForSelector:@selector(test)];</li>
+<li>[[[NSObject alloc] init] methodForSelector:@selector(test)];</li>
 </ul>
-<h2 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h2><!-- toc -->
-<p>所谓解耦，即在开发项目中工程师不需要仅仅只为做个输入限制，就在项目中到处写 UITextFieldDelegate 协议中的方法，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string &#123;</div><div class="line">    // Coding</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>只需继承 <a href="https://github.com/tingxins/InputKit" target="_blank" rel="external">InputKit</a> 中的类即可，然后设置相关的限制属性即可，无需设置 delegate。以 TXLimitedTextFieldTypePrice 类型为例，如：</p>
-<p><strong>Objective-C</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 创建 TXLimitedTextField 实例</div><div class="line">TXLimitedTextField *textField = [[TXLimitedTextField alloc] initWithFrame:CGRectMake(20, 200, 100, 30)];</div><div class="line">// 如 limitedType 不设置，默认 TXLimitedTextFieldTypeDefault</div><div class="line">textField.limitedType = TXLimitedTextFieldTypePrice;</div><div class="line">// 限制 10 的输入长度</div><div class="line">textField.limitedNumber = 10;</div><div class="line">// 保留 5 位整数位</div><div class="line">textField.limitedPrefix = 5;</div><div class="line">// 保留 2 位小数位</div><div class="line">textField.limitedSuffix = 2;</div><div class="line">[self.view addSubview:textField];</div></pre></td></tr></table></figure>
-<p><strong>Swift</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let textField = LimitedTextField(frame: CGRect(x: 20, y: 200, width: 100, height: 30))</div><div class="line">textField.limitedType = .price</div><div class="line">textField.limitedNumber = 10</div><div class="line">textField.limitedPrefix = 5</div><div class="line">textField.limitedSuffix = 2</div><div class="line">view.addSubview(textField)</div></pre></td></tr></table></figure>
-<p>如果想设置 textField 的 delegate 也可以（即 textField.delegate = self），不会影响其限制功能，就像使用普通的 UITextField 一样，毫无差异，非常方便。</p>
-<p><strong>Demo 截图：</strong></p>
-<p><img src="http://image.tingxins.cn/InputKit/inputKit-demo-price.gif" alt="inputKit-demo-price"></p>
-<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><!-- toc -->
-<p>文章开头提到过，需求即针对商品价格输入（如：保留3位整数，2位小数等）、买家留言字数限制、不能输入中文、不能输入英文、只能输入数字等等做限制。</p>
-<p>如果针对上述的部分需求做定制键盘，是完全没必要的，因为工作量增多且并不能从源头解决问题，比如：用户使用粘贴功能、使用键盘提示文本等等，导致定制的键盘也是白搭。因此 InputKit 从源头解决该问题，针对用户的输入进行筛选并限制。比如我们只能让用户输入中文：</p>
-<p><strong>Objective-C</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">TXLimitedTextField *textField = [[TXLimitedTextField alloc] initWithFrame:CGRectMake(20, 200, 100, 30)];</div><div class="line"></div><div class="line">// 自定义输入限制类型</div><div class="line">textField.limitedType = TXLimitedTextFieldTypeCustom;</div><div class="line"></div><div class="line">// 限制最大输入长度</div><div class="line">textField.limitedNumber = 10;</div><div class="line"></div><div class="line">// limitedRegExs 是一个数组类型的参数，数组元素类型即正则表达式，如：kTXLimitedTextFieldChineseOnlyRegex 是一个常量，其值为：“^[\u4e00-\u9fa5]&#123;0,&#125;$”，即代表匹配中文的正则</div><div class="line">textField.limitedRegExs = @[kTXLimitedTextFieldChineseOnlyRegex];</div><div class="line"></div><div class="line">[self.view addSubview:textField];</div></pre></td></tr></table></figure>
-<p>（<strong>Swift 代码略</strong>）</p>
-<p>关于上述的正则表达式，在 InputKit 中的 TXMatchConst.h 头文件中提供了一些常用的，比如：只能输入数字、中文、字母等等，欢迎大家在 GitHub 上 PR。（注意：此处的正则表达式限制的是输入源头，而非结果！不然会导致用户无法输入。体会一下哈）。</p>
-<p><strong>Demo 截图：</strong></p>
-<p><img src="http://image.tingxins.cn/InputKit/inputKit-demo-custom.gif" alt="inputKit-demo-custom"></p>
-<h2 id="Bug"><a href="#Bug" class="headerlink" title="Bug"></a>Bug</h2><!-- toc -->
-<p>在没使用 <a href="https://github.com/tingxins/InputKit" target="_blank" rel="external">InputKit</a> 之前，有时候，运行到程序的某处，点击输入框，程序莫名其妙的卡死，过会儿就闪退了。相信不少人遇到过，后来发现是 self.delegate = self（self 即输入框对象） 导致的。注释后，发现没问题，打开后，程序又闪退，后来发现原来是 self.delegate = self 引起的死循环，因此不得不注释该句代码。</p>
-<p>上述的这些问题，如：在项目中 UITextFieldDelegate 协议方法遍地都是，以及一不小心使用了 self.delegate = self 时，还会出现死循环等等，<a href="https://github.com/tingxins/InputKit" target="_blank" rel="external">InputKit</a> 都解决了。</p>
-<p>使用 <a href="https://github.com/tingxins/InputKit" target="_blank" rel="external">InputKit</a> 后，self.delegate = self 程序不再卡死。（晚点会再发一篇软文针对 self.delegate = self 的问题进行剖析）。</p>
-<p>至此，需求、Bug 均已解决。👀</p>
-<h2 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h2><!-- toc -->
-<p>GitHub 项目及 Demo 地址：<a href="https://github.com/tingxins/InputKit。有什么问题或者更好的建议，直接提" target="_blank" rel="external">https://github.com/tingxins/InputKit。有什么问题或者更好的建议，直接提</a> issue 或者 PR。</p>
+<h3 id="探究"><a href="#探究" class="headerlink" title="探究"></a>探究</h3><!-- toc -->
+<p>为了验证本文的一些说法，下面我们写个测试代码进行验证，输出结果本文不做分析，有兴趣的读者可以对照上文自行分析：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Class currentClass = [UITextField class];</div><div class="line">for (int index = 0; index &lt; 5; ++ index) &#123;</div><div class="line">   </div><div class="line">   NSLog(@&quot;## index:%d ## isa:%p --- superClass:%p&quot;, index, currentClass, class_getSuperclass(currentClass));</div><div class="line">   currentClass = object_getClass(currentClass);</div><div class="line">&#125;</div><div class="line">NSLog(@&quot;NSObject:%p --- NSObject Meta Class:%p\nMeta super Class:%p --- Meta root Class:%p&quot;, [NSObject class], object_getClass([NSObject class]), class_getSuperclass(object_getClass([NSObject class])), object_getClass(object_getClass([NSObject class])));</div></pre></td></tr></table></figure>
+<p>运行上述代码后，输出结果如下：</p>
+<p><img src="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-loginfos.png" alt="instance-class-meta_class-loginfos"></p>
+<h3 id="By-the-way-happy-Children’s-Day-🤡🤡🤡"><a href="#By-the-way-happy-Children’s-Day-🤡🤡🤡" class="headerlink" title="By the way, happy Children’s Day!🤡🤡🤡"></a>By the way, happy Children’s Day!🤡🤡🤡</h3><h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><!-- toc -->
+<ol>
+<li><p><a href="http://www.cocoawithlove.com/2010/01/what-is-meta-class-in-objective-c.html" target="_blank" rel="external">What is a meta-class in Objective-C?</a></p>
+</li>
+<li><p><a href="http://www.sealiesoftware.com/blog/archive/2009/04/14/objc_explain_Classes_and_metaclasses.html" target="_blank" rel="external">Classes and metaclasses</a></p>
+</li>
+</ol>
 <h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><!-- toc -->
 <p>欢迎关注微信公众号</p>
 <p><img src="http://image.tingxins.cn/adv/wechat-qrcode.jpg" alt="wechat-qrcode"></p>
@@ -364,7 +367,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/InputText/">InputText</a> <a class="tag tag--primary tag--small t-link" href="/tags/Objective-C/">Objective-C</a> <a class="tag tag--primary tag--small t-link" href="/tags/Swift/">Swift</a> <a class="tag tag--primary tag--small t-link" href="/tags/TextField/">TextField</a> <a class="tag tag--primary tag--small t-link" href="/tags/TextView/">TextView</a> <a class="tag tag--primary tag--small t-link" href="/tags/UI/">UI</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Objective-C/">Objective-C</a> <a class="tag tag--primary tag--small t-link" href="/tags/元类/">元类</a> <a class="tag tag--primary tag--small t-link" href="/tags/对象/">对象</a> <a class="tag tag--primary tag--small t-link" href="/tags/类/">类</a>
 
             </div>
         
@@ -374,7 +377,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/01/2017-06-04-about-delegate-oc/"  data-tooltip="self.delegate = self ?">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/28/input-kit-introduction/"  data-tooltip="iOS 输入限制之 InputKit">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -382,7 +385,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/05/30/2017-05-31-metaclass-class-relationship/" data-tooltip="Objective-C 中的对象、类、元类">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/30/synchronous-gcd/" data-tooltip="iOS 中网络请求同步">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -400,7 +403,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -408,7 +411,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -416,7 +419,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -424,7 +427,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -432,7 +435,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/&amp;title=iOS 输入限制之 InputKit">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/05/30/metaclass-class-relationship/&amp;title=Objective-C 中的对象、类、元类">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -485,7 +488,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/07/01/2017-06-04-about-delegate-oc/"  data-tooltip="self.delegate = self ?">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/06/28/input-kit-introduction/"  data-tooltip="iOS 输入限制之 InputKit">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -493,7 +496,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/05/30/2017-05-31-metaclass-class-relationship/" data-tooltip="Objective-C 中的对象、类、元类">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/30/synchronous-gcd/" data-tooltip="iOS 中网络请求同步">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -511,7 +514,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -519,7 +522,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -527,7 +530,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -535,7 +538,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -543,7 +546,7 @@
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/&amp;title=iOS 输入限制之 InputKit">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/05/30/metaclass-class-relationship/&amp;title=Objective-C 中的对象、类、元类">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -574,7 +577,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
                 </a>
             </li>
@@ -582,7 +585,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
                 </a>
             </li>
@@ -590,7 +593,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
                 </a>
             </li>
@@ -598,7 +601,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/">
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                     <i class="fa fa-weibo"></i><span>分享到 Weibo</span>
                 </a>
             </li>
@@ -606,7 +609,7 @@
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/&amp;title=iOS 输入限制之 InputKit">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/05/30/metaclass-class-relationship/&amp;title=Objective-C 中的对象、类、元类">
                     <i class="fa fa-qq"></i><span>分享到 QQ</span>
                 </a>
             </li>
@@ -676,13 +679,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/date-formate-patterns.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <h3 class="media-heading">性能优化之 NSDateFormatter</h3>
                         </a>
                         <span class="media-meta">
@@ -701,13 +704,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/timer-leaks-unresolved.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <h3 class="media-heading">浅析 NSTimer &amp; CADisplayLink 内存泄漏</h3>
                         </a>
                         <span class="media-meta">
@@ -726,7 +729,7 @@
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                             <h3 class="media-heading">iOS 跑马灯之 TXScrollLabelView</h3>
                         </a>
                         <span class="media-meta">
@@ -745,7 +748,7 @@
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/2017-01-14-summary-2016/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/summary-2016/">
                             <h3 class="media-heading">2016 Summary</h3>
                         </a>
                         <span class="media-meta">
@@ -764,13 +767,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-plane.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <h3 class="media-heading">字符编码（一）</h3>
                         </a>
                         <span class="media-meta">
@@ -789,13 +792,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-latin-extended-additional.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <h3 class="media-heading">Swift 3.x 中 Strings/Characters 闲聊</h3>
                         </a>
                         <span class="media-meta">
@@ -814,13 +817,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <h3 class="media-heading">01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)</h3>
                         </a>
                         <span class="media-meta">
@@ -839,13 +842,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/sorting_shellsort_anim.gif" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <h3 class="media-heading">02-希尔排序 (Shell Sort)</h3>
                         </a>
                         <span class="media-meta">
@@ -864,13 +867,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <img class="media-image" src="http://image.tingxins.cn/Blog/browser-jd.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <h3 class="media-heading">iOS 中网络请求同步</h3>
                         </a>
                         <span class="media-meta">
@@ -889,13 +892,13 @@
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <h3 class="media-heading">Objective-C 中的对象、类、元类</h3>
                         </a>
                         <span class="media-meta">
@@ -933,9 +936,9 @@
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://tingxins.cn/2017/06/28/2017-06-05-input-kit-introduction/';
+                 this.page.url = 'http://tingxins.cn/2017/05/30/metaclass-class-relationship/';
                  
-                    this.page.identifier = '2017/06/28/2017-06-05-input-kit-introduction/';
+                    this.page.identifier = '2017/05/30/metaclass-class-relationship/';
                  
              };
             (function() {

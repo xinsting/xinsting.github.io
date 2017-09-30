@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="tingxins - 神奇世界">
-    <title>iOS 跑马灯之 TXScrollLabelView - tingxins - 神奇世界</title>
+    <title>iOS 中网络请求同步 - tingxins - 神奇世界</title>
     <meta name="author" content="tingxins">
     
         <meta name="keywords" content="javascript,hexo">
@@ -17,23 +17,21 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="前段时间在开发一个广播的功能，网上也自己找了一些库，没有发现非常好用的，于是自己抽时间写了一个，发布一天收获六十多个 star，这里首先感谢大家">
+    <meta name="description" content="在开发过程中，有时候会遇到这样一些问题，比如：在某些业务要求下，需发送同步请求。">
 <meta name="keywords" content="javascript,hexo">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="iOS 跑马灯之 TXScrollLabelView">
-<meta property="og:url" content="http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/index.html">
+<meta property="og:title" content="iOS 中网络请求同步">
+<meta property="og:url" content="http://tingxins.cn/2017/04/30/synchronous-gcd/index.html">
 <meta property="og:site_name" content="tingxins - 神奇世界">
-<meta property="og:description" content="前段时间在开发一个广播的功能，网上也自己找了一些库，没有发现非常好用的，于是自己抽时间写了一个，发布一天收获六十多个 star，这里首先感谢大家">
+<meta property="og:description" content="在开发过程中，有时候会遇到这样一些问题，比如：在某些业务要求下，需发送同步请求。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:image" content="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-jd.gif">
-<meta property="og:image" content="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-ka.gif">
-<meta property="og:image" content="http://image.tingxins.cn/TXScrollLabelView/master/scroll-label-view.gif">
+<meta property="og:image" content="http://image.tingxins.cn/Blog/browser-jd.png">
 <meta property="og:image" content="http://image.tingxins.cn/adv/wechat-qrcode.jpg">
-<meta property="og:updated_time" content="2017-09-29T13:17:20.000Z">
+<meta property="og:updated_time" content="2017-09-29T13:18:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS 跑马灯之 TXScrollLabelView">
-<meta name="twitter:description" content="前段时间在开发一个广播的功能，网上也自己找了一些库，没有发现非常好用的，于是自己抽时间写了一个，发布一天收获六十多个 star，这里首先感谢大家">
-<meta name="twitter:image" content="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-jd.gif">
+<meta name="twitter:title" content="iOS 中网络请求同步">
+<meta name="twitter:description" content="在开发过程中，有时候会遇到这样一些问题，比如：在某些业务要求下，需发送同步请求。">
+<meta name="twitter:image" content="http://image.tingxins.cn/Blog/browser-jd.png">
 <meta name="twitter:creator" content="@tingxins">
     
         <link rel="publisher" href="https://plus.google.com/117623867079144390000"/>
@@ -44,6 +42,9 @@
     
         <meta property="og:image" content="http://image.tingxins.cn/user/avatar.jpg"/>
     
+    
+        <meta property="og:image" content="http://image.tingxins.cn/Blog/browser-jd.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/Blog/browser-jd.png" />
     
     
     
@@ -265,7 +266,7 @@
             
             <div id="main" data-behavior="4"
                  class="
-                        hasCoverMetaIn
+                        hasCoverMetaOut
                         ">
                 
 <article class="post" itemscope itemType="http://schema.org/BlogPosting">
@@ -274,20 +275,20 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            iOS 跑马灯之 TXScrollLabelView
+            iOS 中网络请求同步
         </h1>
     
     
         <div class="post-meta">
-    <time itemprop="datePublished" datetime="2016-11-20T12:41:18+08:00">
+    <time itemprop="datePublished" datetime="2017-04-30T00:00:00+08:00">
 	
-		    11月 20, 2016
+		    4月 30, 2017
     	
     </time>
     
         <span>发布在 </span>
         
-    <a class="category-link" href="/categories/开源/">开源</a>
+    <a class="category-link" href="/categories/网络/">网络</a>
 
 
     
@@ -299,42 +300,61 @@
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <!-- excerpt --></p>
-<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TXScrollLabelView-？"><span class="toc-text">TXScrollLabelView ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支持滚动类型"><span class="toc-text">支持滚动类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何接入-？"><span class="toc-text">如何接入 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用-？"><span class="toc-text">如何使用 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol></li></ol>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><!-- toc -->
-<p>前段时间在开发一个广播的功能，网上也自己找了一些库，没有发现非常好用的，于是自己抽时间写了一个，发布一天收获六十多个 <code>star</code>，这里首先感谢大家在微博上的转发，使得 <a href="https://github.com/tingxins/TXScrollLabelView" target="_blank" rel="external"><code>TXScrollLabelView</code></a>  被更多需要的人知道，同时非常感谢大家的吐槽及建议，使之诞生 <a href="https://github.com/tingxins/TXScrollLabelView" target="_blank" rel="external"><code>TXScrollLabelView</code></a> v1.1.1 版本，目前已支持 <code>CocoaPods</code>，后续会增加 <code>Carthage</code>。Github 地址: <a href="https://github.com/tingxins/TXScrollLabelView" target="_blank" rel="external">TXScrollLabelView</a> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">pod search TXScrollLabelView</div><div class="line"></div><div class="line">-&gt; TXScrollLabelView (1.1.1)</div><div class="line">   The best way to show &amp; display such as adverts,boardcast,OnSale e.g. with a</div><div class="line">   customView.</div><div class="line">   pod &apos;TXScrollLabelView&apos;, &apos;~&gt; 1.1.1&apos;</div><div class="line">   - Homepage: https://github.com/tingxins/TXScrollLabelView</div><div class="line">   - Source:   https://github.com/tingxins/TXScrollLabelView.git</div><div class="line">   - Versions: 1.1.1 [master repo]</div></pre></td></tr></table></figure>
-<h2 id="TXScrollLabelView-？"><a href="#TXScrollLabelView-？" class="headerlink" title="TXScrollLabelView ？"></a>TXScrollLabelView ？</h2><!-- toc -->
-<p><code>TXScrollLabelView</code> 是一个能够快速接入自定义标签滚动视图，可以做促销栏、头条栏、广播栏、广告栏等等展示，效果图：</p>
-<p><img src="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-jd.gif" alt="scrolling-txscrolllabelview-jd"></p>
-<p><img src="http://image.tingxins.cn/blog/scrolling-txscrolllabelview-ka.gif" alt="scrolling-txscrolllabelview-ka"></p>
-<p><img src="http://image.tingxins.cn/TXScrollLabelView/master/scroll-label-view.gif" alt="scrolling-txscrolllabelview-un"></p>
-<h2 id="支持滚动类型"><a href="#支持滚动类型" class="headerlink" title="支持滚动类型"></a>支持滚动类型</h2><!-- toc -->
-<p>现在 <code>TXScrollLabelView</code> 支持4种滚动类型：</p>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#场景"><span class="toc-text">场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSURLConnection-中的同步请求"><span class="toc-text">NSURLConnection 中的同步请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatch-semaphore（信号量）"><span class="toc-text">Dispatch_semaphore（信号量）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatch-group（组）"><span class="toc-text">Dispatch_group（组）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><!-- toc -->
+<p>在开发过程中，有时候会遇到这样一些问题，比如：</p>
 <ul>
-<li><p><code>TXScrollLabelViewTypeLeftRight</code>：从右向左单行滚动</p>
-</li>
-<li><p><code>TXScrollLabelViewTypeUpDown</code>：从下至上多行滚动</p>
-</li>
-<li><p><code>TXScrollLabelViewTypeFlipRepeat</code>：从下至上单行循环滚动</p>
-</li>
-<li><p><code>TXScrollLabelViewTypeFlipNoRepeat</code>：从下至上单行依次滚动</p>
-</li>
+<li>在某些业务要求下，需发送同步请求。</li>
+<li>在某些界面需请求多个接口，且各个接口返回的数据之间或者整体存在依赖关系。</li>
+<li>···</li>
 </ul>
-<p>前几天 <code>GitHub</code> 有人提出 <code>scrollVelocity</code> 针对相关类型失效问题，现在已经全部解决，以上四种类型 <code>scrollVelocity</code> 全部支持啦。后期会持续增加更多的功能，满足更多的需求。</p>
-<h2 id="如何接入-？"><a href="#如何接入-？" class="headerlink" title="如何接入 ？"></a>如何接入 ？</h2><!-- toc -->
-<p>目前支持两种方式集成 <code>TXScrollLabelView</code>:</p>
-<ul>
-<li><p>使用 <code>cocoaPods</code></p>
-<pre><code>platform :ios, &apos;7.0&apos;
-pod &apos;TXScrollLabelView&apos;
-</code></pre></li>
-<li><p>手动</p>
-<p>  <code>Clone</code> 或者 <code>DownloadZip</code> 至本地，然后手动拖拽 <code>TXScrollLabelView</code> 文件夹中的文件至项目中，使用的时候 <code>#import &quot;TXScrollLabelView.h“</code> 即可。</p>
-</li>
-</ul>
-<h2 id="如何使用-？"><a href="#如何使用-？" class="headerlink" title="如何使用 ？"></a>如何使用 ？</h2><!-- toc -->
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//1.获取滚动的内容</div><div class="line">NSString *scrollTitle = @&quot;xxxxxx&quot;;</div><div class="line">//2.创建TXScrollLabelView</div><div class="line">TXScrollLabelView *scrollLabelView = [TXScrollLabelView scrollWithTitle:scrollTitle type:0 velocity:3 options:UIViewAnimationOptionTransitionFlipFromTop];</div><div class="line">//3.开始滚动</div><div class="line">[scrollLabelView beginScrolling];</div></pre></td></tr></table></figure>
-<p>更多请详见Demo：<a href="https://github.com/tingxins/TXScrollLabelView/tree/master/TXScrollLabelViewDemo" target="_blank" rel="external">https://github.com/tingxins/TXScrollLabelView/tree/master/TXScrollLabelViewDemo</a></p>
+<p>那么在上述的这些场景下应如何发送网络请求？发同步请求 or 异步请求？请求嵌套？······</p>
+<p>本文将简单探究开发过程中<strong>网络请求同步</strong>的问题以及相关注意点。</p>
+<h2 id="NSURLConnection-中的同步请求"><a href="#NSURLConnection-中的同步请求" class="headerlink" title="NSURLConnection 中的同步请求"></a>NSURLConnection 中的同步请求</h2><!-- toc -->
+<p>我们都知道 NSURLConnection 中有一个同步请求的 API :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">+ (NSData *)sendSynchronousRequest:(NSURLRequest *)request</div><div class="line">returningResponse:(NSURLResponse **)response</div><div class="line">error:(NSError **)error</div></pre></td></tr></table></figure>
+<p>针对上述的第一种情况 A，该 API 可满足要求。如果同步请求阻塞主线程的时间过长，存在被 watchdog kill 的可能。想避免这种情况，建议在子线程中调用此 API。(感兴趣的同学可以看看，关于 <a href="https://developer.apple.com/library/content/qa/qa1693/_index.html" target="_blank" rel="external">watchdog timeout crashes</a>/<a href="https://developer.apple.com/library/content/technotes/tn2151/_index.html" target="_blank" rel="external">Understanding and Analyzing Application Crash Reports</a>)</p>
+<p>同步请求相对异步请求而言存在一些缺陷，如：</p>
+<ol>
+<li>请求发出后，就无法取消</li>
+<li>返回的数据只能放到请求结束后进行处理</li>
+<li>···</li>
+</ol>
+<p>很遗憾，NSURLConnection 目前已被苹果全面弃用，并且 AFNetworking 在 3.x 中已经移除此类 API，因此同步请求不建议采用此种方式。</p>
+<h2 id="Dispatch-semaphore（信号量）"><a href="#Dispatch-semaphore（信号量）" class="headerlink" title="Dispatch_semaphore（信号量）"></a>Dispatch_semaphore（信号量）</h2><!-- toc -->
+<p><strong>信号量机制</strong>，我们可以简单理解为资源管理分配的一种抽象方式。在 GCD 中，提供了以下这么几个函数，可用于请求同步等处理，模拟同步请求：</p>
+<ol>
+<li>dispatch_semaphore_t semaphore = dispatch_semaphore_create(value);</li>
+<li>dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</li>
+<li>dispatch_semaphore_signal(semaphore);</li>
+</ol>
+<p>value 可以理解为资源数量，以 value = 0 为例，调用 dispatch_semaphore_wait 操作成功后，当资源数量 value 等于 0 时，就会阻塞当前线程（反之，value 就会减 1），直到有 dispatch_semaphore_signal 通知信号发出，当 value 大于 0 时，当前线程就会被唤醒继续执行其他操作。</p>
+<p>下面我们展示一段代码来模拟同步请求：</p>
+<p><strong>Objective-C</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 1.创建信号量</div><div class="line">dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</div><div class="line">NSLog(@&quot;0&quot;);</div><div class="line">// 开始异步请求操作（部分代码略）</div><div class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    // This function returns non-zero if a thread is woken. Otherwise, zero is returned.</div><div class="line">    // 2.在网络请求结束后发送通知信号</div><div class="line">    dispatch_semaphore_signal(semaphore);</div><div class="line">&#125;);</div><div class="line">// Returns zero on success, or non-zero if the timeout occurred.</div><div class="line">// 3.发送等待信号</div><div class="line">dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</div><div class="line">NSLog(@&quot;2&quot;);</div><div class="line"></div><div class="line">// print 0、1、2</div></pre></td></tr></table></figure>
+<p><strong>Swift</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">func sendSynchronousDataTask(with url: URL) -&gt; (Data?, URLResponse?, Error?) &#123;</div><div class="line">    var data: Data?</div><div class="line">    var response: URLResponse?</div><div class="line">    var error: Error?</div><div class="line">    // 1.创建信号量</div><div class="line">    let semaphore = DispatchSemaphore(value: 0)</div><div class="line">    // 开始异步请求操作</div><div class="line">    let dataTask = URLSession.shared.dataTask(with: url) &#123;</div><div class="line">        data = $0</div><div class="line">        response = $1</div><div class="line">        error = $2</div><div class="line">        // 2.在网络请求结束后发送通知信号</div><div class="line">        semaphore.signal()</div><div class="line">    &#125;</div><div class="line">    dataTask.resume()</div><div class="line">    // 3.发送等待信号</div><div class="line">    _ = semaphore.wait(timeout: .distantFuture)</div><div class="line">    </div><div class="line">    return (data, response, error)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 iOS 系统中，如果应用不能及时的响应用户界面交互事件（如启动、暂停、恢复和终止），watchdog 就会杀死程序并生成一个 watchdog 超时崩溃报告，据官方说法，watchdog timeout 时间并没有明文规定，但一般会少于网络请求超时时间。</p>
+<blockquote>
+<p>In order to keep the user interface responsive, iOS includes a watchdog mechanism. If your application fails to respond to certain user interface events (launch, suspend, resume, terminate) in time, the watchdog will kill your application and generate a watchdog timeout crash report. The amount of time the watchdog gives you is not formally documented, but it’s always less than a network timeout.</p>
+</blockquote>
+<p>这里有一个奇怪的现象，经测试，笔者采用信号量机制一直阻塞主线程时并没有被 <strong>watchdog</strong> kill，但 <strong>NSURLConnection</strong> 中的同步请求方法 + sendSynchronousRequest:returningResponse:error: 在慢速网络下与其说 crash 了，不如说被 watchdog kill 了。不扯远了，开始下一个话题 —— dispatch_group_t</p>
+<h2 id="Dispatch-group（组）"><a href="#Dispatch-group（组）" class="headerlink" title="Dispatch_group（组）"></a>Dispatch_group（组）</h2><!-- toc -->
+<p>继续本文话题，回顾文章开头提到的问题，如果针对单个请求进行同步处理，那么使用同步请求即可，上述两种方式都可以。如果在某些界面需请求多个接口，且各个接口返回的数据之间或者整体存在依赖关系，那怎么办呢？虽然采用嵌套请求的方式能解决此问题，但存在很多问题，如：其中一个请求失败会导致后续请求无法正常进行、多个请求在时间上没有复用，即无并发性。</p>
+<blockquote>
+<p>A dispatch group is a mechanism for monitoring a set of blocks. Your application can monitor the blocks in the group synchronously or asynchronously depending on your needs. By extension, a group can be useful for synchronizing for code that depends on the completion of other tasks.</p>
+</blockquote>
+<p>针对这种情形，即某个操作依赖于其他几个任务的完成时，我们可采用 dispatch_group。主要使用如下两个函数：</p>
+<ol>
+<li>dispatch_group_enter(group);</li>
+<li>dispatch_group_leave(group);</li>
+</ol>
+<p>以上这两个函数必须配对使用，否则 dispatch_group_notify 不会触发。贴一段代码 + 一张效果图（<a href="https://github.com/tingxins/TXBrowser" target="_blank" rel="external">源码</a>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">// 创建 dispatch 组</div><div class="line">dispatch_group_t group = dispatch_group_create();</div><div class="line"></div><div class="line">// 第一个请求：</div><div class="line">dispatch_group_enter(group);</div><div class="line">[self sendGetAddressByPinWithURLs:REQUEST(@&quot;getAddressByPin.json&quot;) completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) &#123;</div><div class="line">    NSArray *addressList = [TXAddressModel mj_objectArrayWithKeyValuesArray:data[@&quot;addressList&quot;]];</div><div class="line">    self.addressList = addressList;</div><div class="line">    dispatch_group_leave(group);</div><div class="line">&#125;];</div><div class="line"></div><div class="line">// 第二个请求</div><div class="line">dispatch_group_enter(group);</div><div class="line">[self sendCurrentOrderWithURLs:REQUEST(@&quot;currentOrder.json&quot;) completionHandler:^(NSDictionary * _Nullable data, NSError * _Nullable error) &#123;</div><div class="line">    TXCurrentOrderModel *currentOrderModel = [TXCurrentOrderModel mj_objectWithKeyValues:data];</div><div class="line">    self.currentOrderModel = currentOrderModel;</div><div class="line">    dispatch_group_leave(group);</div><div class="line">&#125;];</div><div class="line"></div><div class="line">// 当上面两个请求都结束后，回调此 Block</div><div class="line">dispatch_group_notify(group, dispatch_get_main_queue(), ^&#123;</div><div class="line">    NSLog(@&quot;OVER:%@&quot;, [NSThread currentThread]);</div><div class="line">    [self setupOrderDataSource];</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><img src="http://image.tingxins.cn/Blog/browser-jd.png" alt="browser-jd"></p>
+<p>对于熟悉 dispatch_group 的同学来说，可能会想，为何不用 dispatch_group_async？对于网络请求而言，请求发出时它就已经执行完毕，也就是 block 中还有个 completeHandler 的情况下，dispatch_group_async 并不会等待网络请求的回调，所以不符合我们要求。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><!-- toc -->
+<p>通过本文简单探究，展示了如何采用信号量机制模拟同步请求，在开发过程中，我们应尽量避免发送同步请求；并且在某个操作依赖于其他几个任务的完成时，采用 <strong>dispatch_group_async</strong> or <strong>dispatch_group_enter/dispatch_group_leave</strong> 来实现同步等处理。如果是进行网络请求同步，应采用后者。当然，如果感兴趣，我们可以在第三方网络库的基础上封装一层自己网络库。（<a href="https://github.com/tingxins/TXBrowser" target="_blank" rel="external">相关源码</a>）</p>
 <h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><!-- toc -->
 <p>欢迎关注微信公众号</p>
 <p><img src="http://image.tingxins.cn/adv/wechat-qrcode.jpg" alt="wechat-qrcode"></p>
@@ -346,7 +366,7 @@ pod &apos;TXScrollLabelView&apos;
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">标签</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/Objective-C/">Objective-C</a> <a class="tag tag--primary tag--small t-link" href="/tags/UIScrollView/">UIScrollView</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/Dispatch-group/">Dispatch_group</a> <a class="tag tag--primary tag--small t-link" href="/tags/Dispatch-semaphore/">Dispatch_semaphore</a> <a class="tag tag--primary tag--small t-link" href="/tags/GCD/">GCD</a> <a class="tag tag--primary tag--small t-link" href="/tags/NSURLConnection/">NSURLConnection</a> <a class="tag tag--primary tag--small t-link" href="/tags/Objective-C/">Objective-C</a>
 
             </div>
         
@@ -356,7 +376,7 @@ pod &apos;TXScrollLabelView&apos;
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/13/2017-01-14-summary-2016/"  data-tooltip="2016 Summary">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/05/30/metaclass-class-relationship/"  data-tooltip="Objective-C 中的对象、类、元类">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -364,7 +384,7 @@ pod &apos;TXScrollLabelView&apos;
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/" data-tooltip="浅析 NSTimer &amp; CADisplayLink 内存泄漏">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/16/shell-sort/" data-tooltip="02-希尔排序 (Shell Sort)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -382,7 +402,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -390,7 +410,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -398,7 +418,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -406,7 +426,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -414,7 +434,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/&amp;title=iOS 跑马灯之 TXScrollLabelView">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/04/30/synchronous-gcd/&amp;title=iOS 中网络请求同步">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -467,7 +487,7 @@ pod &apos;TXScrollLabelView&apos;
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/01/13/2017-01-14-summary-2016/"  data-tooltip="2016 Summary">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/05/30/metaclass-class-relationship/"  data-tooltip="Objective-C 中的对象、类、元类">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -475,7 +495,7 @@ pod &apos;TXScrollLabelView&apos;
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/" data-tooltip="浅析 NSTimer &amp; CADisplayLink 内存泄漏">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/03/16/shell-sort/" data-tooltip="02-希尔排序 (Shell Sort)">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                     <i class="fa fa-angle-right"></i>
@@ -493,7 +513,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-facebook-official"></i>
                 </a>
             </li>
@@ -501,7 +521,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-twitter"></i>
                 </a>
             </li>
@@ -509,7 +529,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-google-plus"></i>
                 </a>
             </li>
@@ -517,7 +537,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-weibo"></i>
                 </a>
             </li>
@@ -525,7 +545,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/&amp;title=iOS 跑马灯之 TXScrollLabelView">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/04/30/synchronous-gcd/&amp;title=iOS 中网络请求同步">
                     <i class="fa fa-qq"></i>
                 </a>
             </li>
@@ -556,7 +576,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
                 </a>
             </li>
@@ -564,7 +584,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
                 </a>
             </li>
@@ -572,7 +592,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
                 </a>
             </li>
@@ -580,7 +600,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/04/30/synchronous-gcd/">
                     <i class="fa fa-weibo"></i><span>分享到 Weibo</span>
                 </a>
             </li>
@@ -588,7 +608,7 @@ pod &apos;TXScrollLabelView&apos;
             
             
             <li class="share-option">
-                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/&amp;title=iOS 跑马灯之 TXScrollLabelView">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/04/30/synchronous-gcd/&amp;title=iOS 中网络请求同步">
                     <i class="fa fa-qq"></i><span>分享到 QQ</span>
                 </a>
             </li>
@@ -658,13 +678,13 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/date-formate-patterns.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/2016-10-27-NSDateFormatter/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/10/27/ns-date-formatter/">
                             <h3 class="media-heading">性能优化之 NSDateFormatter</h3>
                         </a>
                         <span class="media-meta">
@@ -683,13 +703,13 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/timer-leaks-unresolved.jpg" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/2016-11-03-NSTimer-CADisplayLink-leaks/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/03/ns-timer-cadisplay-link-leaks/">
                             <h3 class="media-heading">浅析 NSTimer &amp; CADisplayLink 内存泄漏</h3>
                         </a>
                         <span class="media-meta">
@@ -708,7 +728,7 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2016/11/20/scrolling-txscrolllabelview/">
                             <h3 class="media-heading">iOS 跑马灯之 TXScrollLabelView</h3>
                         </a>
                         <span class="media-meta">
@@ -727,7 +747,7 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/2017-01-14-summary-2016/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/13/summary-2016/">
                             <h3 class="media-heading">2016 Summary</h3>
                         </a>
                         <span class="media-meta">
@@ -746,13 +766,13 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-plane.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/2017-01-28-character-encoding-01/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/01/27/character-encoding-01/">
                             <h3 class="media-heading">字符编码（一）</h3>
                         </a>
                         <span class="media-meta">
@@ -771,13 +791,13 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/unicode-latin-extended-additional.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/2017-01-14-swift-string-character-simple/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/02/19/swift-string-character-simple/">
                             <h3 class="media-heading">Swift 3.x 中 Strings/Characters 闲聊</h3>
                         </a>
                         <span class="media-meta">
@@ -796,13 +816,13 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/goldbach-partitions-of-the-even.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/2017-03-14-goldbach-conjecture/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/13/goldbach-conjecture/">
                             <h3 class="media-heading">01-哥德巴赫猜想 (Goldbach&#39;s Conjecture)</h3>
                         </a>
                         <span class="media-meta">
@@ -821,13 +841,13 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/sorting_shellsort_anim.gif" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/2017-03-17-shell-sort/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/03/16/shell-sort/">
                             <h3 class="media-heading">02-希尔排序 (Shell Sort)</h3>
                         </a>
                         <span class="media-meta">
@@ -846,13 +866,13 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <img class="media-image" src="http://image.tingxins.cn/Blog/browser-jd.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/2017-04-30-synchronous-gcd/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/04/30/synchronous-gcd/">
                             <h3 class="media-heading">iOS 中网络请求同步</h3>
                         </a>
                         <span class="media-meta">
@@ -871,13 +891,13 @@ pod &apos;TXScrollLabelView&apos;
                 <div class="media">
                     
                     <div class="media-left">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <img class="media-image" src="http://image.tingxins.cn/blog/images/2017/instance-class-meta_class-bg.png" width="90" height="90"/>
                         </a>
                     </div>
                     
                     <div class="media-body">
-                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/2017-05-31-metaclass-class-relationship/">
+                        <a class="link-unstyled" href="http://tingxins.cn/2017/05/30/metaclass-class-relationship/">
                             <h3 class="media-heading">Objective-C 中的对象、类、元类</h3>
                         </a>
                         <span class="media-meta">
@@ -915,9 +935,9 @@ pod &apos;TXScrollLabelView&apos;
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://tingxins.cn/2016/11/20/2016-11-20-scrolling-txscrolllabelview/';
+                 this.page.url = 'http://tingxins.cn/2017/04/30/synchronous-gcd/';
                  
-                    this.page.identifier = '2016/11/20/2016-11-20-scrolling-txscrolllabelview/';
+                    this.page.identifier = '2017/04/30/synchronous-gcd/';
                  
              };
             (function() {
