@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://image.tingxins.cn/blog/iphone-x-landscape-nav-title.png">
 <meta property="og:image" content="http://image.tingxins.cn/blog/iphone-portrait-landscape-dimensions.png">
 <meta property="og:image" content="http://image.tingxins.cn/blog/iphone-scale-factor.png">
-<meta property="og:updated_time" content="2017-09-30T17:11:35.000Z">
+<meta property="og:updated_time" content="2017-09-30T17:38:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 11 &amp; iPhone X 适配资料集">
 <meta name="twitter:description" content="本文主要简单谈谈并收集一些关于 iOS 11 &amp;amp; iPhone X 的适配及设计指南。众所周知，iPhone X 屏幕与其他的 iPhone 设备均不同，苹果称 iPhone X 的屏幕为超级视网膜显示屏。">
@@ -320,7 +320,7 @@
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <!-- excerpt --></p>
-<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iPhone-X"><span class="toc-text">iPhone X</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安全区域（SafeArea）"><span class="toc-text">安全区域（SafeArea）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无导航栏时"><span class="toc-text">无导航栏时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有导航栏时"><span class="toc-text">有导航栏时</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机型尺寸"><span class="toc-text">机型尺寸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位相关"><span class="toc-text">定位相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料集"><span class="toc-text">资料集</span></a></li></ol>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iPhone-X"><span class="toc-text">iPhone X</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安全区域（SafeArea）"><span class="toc-text">安全区域（SafeArea）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无导航栏时"><span class="toc-text">无导航栏时</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#竖屏"><span class="toc-text">竖屏</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#横屏"><span class="toc-text">横屏</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有导航栏时"><span class="toc-text">有导航栏时</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#竖屏-1"><span class="toc-text">竖屏</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#横屏-1"><span class="toc-text">横屏</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机型尺寸"><span class="toc-text">机型尺寸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位相关"><span class="toc-text">定位相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料集"><span class="toc-text">资料集</span></a></li></ol>
 <p>本文主要简单谈谈并收集一些关于 iOS 11 &amp; iPhone X 的适配及设计指南。</p>
 <h2 id="iPhone-X"><a href="#iPhone-X" class="headerlink" title="iPhone X"></a>iPhone X</h2><!-- toc -->
 <p>众所周知，iPhone X 屏幕与其他的 iPhone 设备均不同，苹果称 iPhone X 的屏幕为超级视网膜显示屏。</p>
@@ -335,24 +335,23 @@
 <ul>
 <li>iPhone X 最引人注意的就是它的屏幕，没错…带刘海的屏幕。至于适配问题，本文不做过多解说，本文末尾会给出相关资料。</li>
 </ul>
+<div class="alert warning"><p>Don’t mask or call special attention to key display features. Don’t attempt to hide the device’s rounded corners, sensor housing, or indicator for accessing the Home screen by placing black bars at the top and bottom of the screen. Don’t use visual adornments like brackets, bezels, shapes, or instructional text to call special attention to these areas either.</p>
+</div>
+<p><strong>注意</strong>：根据 <a href="https://developer.apple.com/ios/human-interface-guidelines/overview/iphone-x/" target="_blank" rel="external">Human Interface Guidelines for iPhone X</a> 规范，不要试图去隐藏屏幕的圆角、刘海等。前段时间 GitHub 上小火了一个 Swift 库 <a href="https://github.com/HarshilShah/NotchKit" target="_blank" rel="external">NotchKit</a>，专门用于隐藏 iPhone X 的刘海。笔者建议先别急着集成公司项目，<span class="highlight-text danger">这种做法可能会被苹果拒绝（违反了 HIG 条例） </span>，不过小伙们可以集成至个人项目提交审核试试。</p>
 <h3 id="安全区域（SafeArea）"><a href="#安全区域（SafeArea）" class="headerlink" title="安全区域（SafeArea）"></a>安全区域（SafeArea）</h3><!-- toc -->
 <h4 id="无导航栏时"><a href="#无导航栏时" class="headerlink" title="无导航栏时"></a>无导航栏时</h4><!-- toc -->
-<p><strong>竖屏</strong></p>
-<p>竖屏情况下并且无导航栏时，上下安全边距分别为 44pt/34pt，即安全区域宽高为 375pt/734pt。</p>
+<h5 id="竖屏"><a href="#竖屏" class="headerlink" title="竖屏"></a>竖屏</h5><p>竖屏情况下并且无导航栏时，上下安全边距分别为 44pt/34pt，即安全区域宽高为 375pt/734pt。</p>
 <div class="figure center" style="width:;"><a class="fancybox" href="http://image.tingxins.cn/blog/iphone-x-portrait.png" title="iphone-x-portrait" data-fancybox-group="adapt" target="_blank" rel="external"><img class="fig-img" src="http://image.tingxins.cn/blog/iphone-x-portrait.png" alt="iphone-x-portrait"></a><span class="caption">iphone-x-portrait</span></div>
-<p><strong>横屏</strong></p>
-<p>横屏情况下并且无导航栏时，上下安全边距分别为 0pt/21pt，左右安全边距为 44pt/44pt，即安全区域宽高为 724pt/354pt。</p>
+<h5 id="横屏"><a href="#横屏" class="headerlink" title="横屏"></a>横屏</h5><p>横屏情况下并且无导航栏时，上下安全边距分别为 0pt/21pt，左右安全边距为 44pt/44pt，即安全区域宽高为 724pt/354pt。</p>
 <div class="figure center" style="width:;"><a class="fancybox" href="http://image.tingxins.cn/blog/iphone-x-landscape.png" title="iphone-x-landscape" data-fancybox-group="adapt" target="_blank" rel="external"><img class="fig-img" src="http://image.tingxins.cn/blog/iphone-x-landscape.png" alt="iphone-x-landscape"></a><span class="caption">iphone-x-landscape</span></div>
 <h4 id="有导航栏时"><a href="#有导航栏时" class="headerlink" title="有导航栏时"></a>有导航栏时</h4><!-- toc -->
 <p>在 iOS 11 中导航栏有个新特性 —— 大标题，直接上代码：</p>
 <figure class="codeblock codeblock--tabbed"><figcaption><a href="http://github.com/tingxins" target="_blank" rel="external">Code</a><ul class="tabs"><li class="tab active">Swift</li><li class="tab">Objective_C</li></ul></figcaption><div class="tabs-content"><figure class="highlight swift" style="display: block;"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> #available(iOS <span class="number">11.0</span>, *) {</span><br><span class="line">    navigationController?.navigationBar.prefersLargeTitles = largeTitle</span><br><span class="line">    navigationController?.navigationItem.largeTitleDisplayMode = .automatic</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><figure class="highlight plain" style="display: none;"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (@available(iOS 11.0, *)) {</span><br><span class="line">    self.navigationController.navigationBar.prefersLargeTitles = YES;</span><br><span class="line">    self.navigationController.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAutomatic;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></div></figure>
-<p><strong>竖屏</strong></p>
-<p>当没有开启大标题且有导航栏时，上下安全边距分别为 88pt/34pt，即安全区域宽高为 375pt/690pt。</p>
+<h5 id="竖屏-1"><a href="#竖屏-1" class="headerlink" title="竖屏"></a>竖屏</h5><p>当没有开启大标题且有导航栏时，上下安全边距分别为 88pt/34pt，即安全区域宽高为 375pt/690pt。</p>
 <div class="figure center" style="width:;"><a class="fancybox" href="http://image.tingxins.cn/blog/iphone-x-portrait-nav-title.png" title="iphone-x-portrait-nav-title" data-fancybox-group="adapt" target="_blank" rel="external"><img class="fig-img" src="http://image.tingxins.cn/blog/iphone-x-portrait-nav-title.png" alt="iphone-x-portrait-nav-title"></a><span class="caption">iphone-x-portrait-nav-title</span></div>
 <p>开启大标题时，上下安全边距分别为 140pt/34pt，即安全区域宽高为 375pt/638pt。</p>
 <div class="figure center" style="width:;"><a class="fancybox" href="http://image.tingxins.cn/blog/iphone-x-portrait-nav-large-title.png" title="iphone-x-portrait-nav-large-title" data-fancybox-group="adapt" target="_blank" rel="external"><img class="fig-img" src="http://image.tingxins.cn/blog/iphone-x-portrait-nav-large-title.png" alt="iphone-x-portrait-nav-large-title"></a><span class="caption">iphone-x-portrait-nav-large-title</span></div>
-<p><strong>横屏</strong></p>
-<p>不管有没有开启大标题，横盘状态下一样，上下安全边距分别为 32pt/21pt，左右安全边距为 44pt/44pt，即安全区域宽高为 724pt/322pt。</p>
+<h5 id="横屏-1"><a href="#横屏-1" class="headerlink" title="横屏"></a>横屏</h5><p>不管有没有开启大标题，横盘状态下一样，上下安全边距分别为 32pt/21pt，左右安全边距为 44pt/44pt，即安全区域宽高为 724pt/322pt。</p>
 <div class="figure center" style="width:;"><a class="fancybox" href="http://image.tingxins.cn/blog/iphone-x-landscape-nav-title.png" title="iphone-x-landscape-nav-title" data-fancybox-group="adapt" target="_blank" rel="external"><img class="fig-img" src="http://image.tingxins.cn/blog/iphone-x-landscape-nav-title.png" alt="iphone-x-landscape-nav-title"></a><span class="caption">iphone-x-landscape-nav-title</span></div>
 <h2 id="机型尺寸"><a href="#机型尺寸" class="headerlink" title="机型尺寸"></a>机型尺寸</h2><!-- toc -->
 <div class="figure center" style="width:;"><a class="fancybox" href="http://image.tingxins.cn/blog/iphone-portrait-landscape-dimensions.png" title="iphone-portrait-landscape-dimensions" data-fancybox-group="adapt" target="_blank" rel="external"><img class="fig-img" src="http://image.tingxins.cn/blog/iphone-portrait-landscape-dimensions.png" alt="iphone-portrait-landscape-dimensions"></a><span class="caption">iphone-portrait-landscape-dimensions</span></div>
