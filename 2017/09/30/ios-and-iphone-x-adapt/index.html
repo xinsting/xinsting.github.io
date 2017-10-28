@@ -34,7 +34,8 @@
 <meta property="og:image" content="http://image.tingxins.cn/blog/iphone-x-landscape-nav-title.png">
 <meta property="og:image" content="http://image.tingxins.cn/blog/iphone-portrait-landscape-dimensions.png">
 <meta property="og:image" content="http://image.tingxins.cn/blog/iphone-scale-factor.png">
-<meta property="og:updated_time" content="2017-10-13T01:53:31.000Z">
+<meta property="og:image" content="http://image.tingxins.cn/adv/wechat-qrcode.jpg">
+<meta property="og:updated_time" content="2017-10-28T18:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 11 &amp; iPhone X 适配资料集">
 <meta name="twitter:description" content="本文主要简单谈谈并收集一些关于 iOS 11 &amp;amp; iPhone X 的适配及设计指南。众所周知，iPhone X 屏幕与其他的 iPhone 设备均不同，苹果称 iPhone X 的屏幕为超级视网膜显示屏。">
@@ -50,8 +51,8 @@
         <meta property="og:image" content="http://image.tingxins.cn/user/avatar.jpg"/>
     
     
-        <meta property="og:image" content="http://image.tingxins.cn/blog/iphone-x-landscape-nav-title.png?imageView2/0/h/365"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/iphone-x-landscape-nav-title.png?imageView2/0/h/365" />
+        <meta property="og:image" content="http://image.tingxins.cn/blog/iphone-x-landscape-nav-title.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/iphone-x-landscape-nav-title.png" />
     
     
         <meta property="og:image" content="http://image.tingxins.cn/blog/iphone-x-vs-iphone.png"/>
@@ -320,7 +321,7 @@
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
             <!-- excerpt --></p>
-<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iPhone-X"><span class="toc-text">iPhone X</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安全区域（SafeArea）"><span class="toc-text">安全区域（SafeArea）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无导航栏时"><span class="toc-text">无导航栏时</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#竖屏"><span class="toc-text">竖屏</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#横屏"><span class="toc-text">横屏</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有导航栏时"><span class="toc-text">有导航栏时</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#竖屏-1"><span class="toc-text">竖屏</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#横屏-1"><span class="toc-text">横屏</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机型尺寸"><span class="toc-text">机型尺寸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位相关"><span class="toc-text">定位相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料集"><span class="toc-text">资料集</span></a></li></ol>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iPhone-X"><span class="toc-text">iPhone X</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安全区域（SafeArea）"><span class="toc-text">安全区域（SafeArea）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无导航栏时"><span class="toc-text">无导航栏时</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#竖屏"><span class="toc-text">竖屏</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#横屏"><span class="toc-text">横屏</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有导航栏时"><span class="toc-text">有导航栏时</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#竖屏-1"><span class="toc-text">竖屏</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#横屏-1"><span class="toc-text">横屏</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机型尺寸"><span class="toc-text">机型尺寸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位相关"><span class="toc-text">定位相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料集"><span class="toc-text">资料集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广告"><span class="toc-text">广告</span></a></li></ol>
 <p>本文主要简单谈谈并收集一些关于 iOS 11 &amp; iPhone X 的适配及设计指南。</p>
 <h2 id="iPhone-X"><a href="#iPhone-X" class="headerlink" title="iPhone X"></a>iPhone X</h2><!-- toc -->
 <p>众所周知，iPhone X 屏幕与其他的 iPhone 设备均不同，苹果称 iPhone X 的屏幕为超级视网膜显示屏。</p>
@@ -383,6 +384,9 @@
 <li><a href="https://developer.apple.com/ios/update-apps-for-iphone-x/" target="_blank" rel="external">Update Apps for iPhone X</a></li>
 <li><a href="http://wetest.qq.com/lab/view/337.html" target="_blank" rel="external">手管 iPhone X 的适配总结</a></li>
 </ol>
+<h2 id="广告"><a href="#广告" class="headerlink" title="广告"></a>广告</h2><!-- toc -->
+<p>欢迎关注微信公众号</p>
+<p><img src="http://image.tingxins.cn/adv/wechat-qrcode.jpg" alt="wechat-qrcode"></p>
             
         </div>
     </div>
@@ -401,7 +405,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/10/29/about-memory-safety-in-swift/"  data-tooltip="关于 Swift 4 中内存安全访问">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -512,7 +516,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/10/29/about-memory-safety-in-swift/"  data-tooltip="关于 Swift 4 中内存安全访问">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -945,7 +949,7 @@
                 data-message-zero="没有找到文章"
                 data-message-one="找到 1 篇文章"
                 data-message-other="找到 {n} 篇文章">
-                找到 15 篇文章
+                找到 16 篇文章
             </p>
         </div>
     </div>
