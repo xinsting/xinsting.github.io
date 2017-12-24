@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="tingxins - 神奇世界">
-    <title>归档: 2017/7 - tingxins - 神奇世界</title>
+    <title>Objective-C 和 Swift 混编项目的小 Tips（一） - tingxins - 神奇世界</title>
     <meta name="author" content="tingxins">
+    
+        <meta name="keywords" content="javascript,hexo">
     
     
         <link rel="icon" href="http://image.tingxins.cn/user/avatar.jpg">
@@ -15,13 +17,21 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta property="og:type" content="blog">
-<meta property="og:title" content="tingxins - 神奇世界">
-<meta property="og:url" content="http://tingxins.cn/archives/2017/07/index.html">
+    <meta name="description" content="本文主要闲聊一些 Objective-C 和 Swift 混编项目带来的一些潜规则，希望能帮到对此感到疑惑的朋友。下面我们开始进入主题：">
+<meta name="keywords" content="javascript,hexo">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Objective-C 和 Swift 混编项目的小 Tips（一）">
+<meta property="og:url" content="http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/index.html">
 <meta property="og:site_name" content="tingxins - 神奇世界">
+<meta property="og:description" content="本文主要闲聊一些 Objective-C 和 Swift 混编项目带来的一些潜规则，希望能帮到对此感到疑惑的朋友。下面我们开始进入主题：">
 <meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://image.tingxins.cn/blog/2017/12/objc-singleton-name-in-swift.png">
+<meta property="og:image" content="http://image.tingxins.cn/blog/2017/12/objc-singleton-name-in-swift-1.png">
+<meta property="og:updated_time" content="2017-12-24T12:46:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tingxins - 神奇世界">
+<meta name="twitter:title" content="Objective-C 和 Swift 混编项目的小 Tips（一）">
+<meta name="twitter:description" content="本文主要闲聊一些 Objective-C 和 Swift 混编项目带来的一些潜规则，希望能帮到对此感到疑惑的朋友。下面我们开始进入主题：">
+<meta name="twitter:image" content="http://image.tingxins.cn/blog/2017/12/objc-singleton-name-in-swift.png">
 <meta name="twitter:creator" content="@tingxins">
     
         <link rel="publisher" href="https://plus.google.com/117623867079144390000"/>
@@ -32,6 +42,9 @@
     
         <meta property="og:image" content="http://image.tingxins.cn/user/avatar.jpg"/>
     
+    
+        <meta property="og:image" content="http://image.tingxins.cn/blog/2017/12/objc-singleton-name-in-swift.png?imageView2/0/h/365"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://image.tingxins.cn/blog/2017/12/objc-singleton-name-in-swift.png?imageView2/0/h/365" />
     
     
     
@@ -58,7 +71,7 @@
             <!-- Define author's picture -->
 
 
-<header id="header" data-behavior="1">
+<header id="header" data-behavior="4">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a class="header-title-link" href="/ ">tingxins - 神奇世界</a>
@@ -82,7 +95,7 @@
         
     
 
-<nav id="sidebar" data-behavior="1">
+<nav id="sidebar" data-behavior="4">
     <div class="sidebar-container">
         
             <div class="sidebar-profile">
@@ -251,79 +264,25 @@
 </nav>
 
             
-            <div id="main" data-behavior="1"
+            <div id="main" data-behavior="4"
                  class="
-                        hasCoverMetaIn
+                        hasCoverMetaOut
                         ">
                 
-    <section class="postShorten-group main-content-wrap">
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
     
     
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/07/11/whats-new-in-swift-4/">
-                            What&#39;s New in Swift 4 ?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-07-11T15:01:30+08:00">
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title" itemprop="headline">
+            Objective-C 和 Swift 混编项目的小 Tips（一）
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2017-12-24T20:25:51+08:00">
 	
-		    7月 11, 2017
-    	
-    </time>
-    
-        <span>发布在 </span>
-        
-    <a class="category-link" href="/categories/WWDC/">WWDC</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <p>本文主要是笔者小结 WWDC2017 中 <a href="https://developer.apple.com/videos/play/wwdc2017/402/" target="_blank" rel="external">《What’s New in Swift》</a>的 Session ，其中也掺杂了些《What’s New in Foundation》，仅作记录。<br>
-                    
-                        <a href="/2017/07/11/whats-new-in-swift-4/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a href="/2017/07/11/whats-new-in-swift-4/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://image.tingxins.cn/blog/swift-logo.png"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/2017/07/01/about-delegate-oc/">
-                            self.delegate = self ?
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2017-07-01T15:23:00+08:00">
-	
-		    7月 01, 2017
+		    12月 24, 2017
     	
     </time>
     
@@ -335,38 +294,171 @@
     
 </div>
 
-            </div>
-            
-                <div class="postShorten-excerpt" itemprop="articleBody">
-                    <p>在 Objective-C 项目中，不少开发者们可能会写或者曾看到过这样的代码：self.delegate = self<br>
-                    
-                        <a href="/2017/07/01/about-delegate-oc/" class="postShorten-excerpt_link link">
-                            阅读全文
-                        </a>
-                        
-                    
-                </div>
+    
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <!-- excerpt --></p>
+<h1 id="table-of-contents">目录</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命名"><span class="toc-text">命名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单例方法命名"><span class="toc-text">单例方法命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-1"><span class="toc-text">Example 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-2"><span class="toc-text">Example 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-3"><span class="toc-text">Example 3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#普通方法命名"><span class="toc-text">普通方法命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类方法"><span class="toc-text">类方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例方法"><span class="toc-text">实例方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol></li></ol></li></ol>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><!-- toc -->
+<p>本文主要闲聊一些 Objective-C 和 Swift 混编项目带来的一些潜规则，希望能帮到对此感到疑惑的朋友。下面我们开始进入主题：</p>
+<h2 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h2><!-- toc -->
+<p>官方 Guide 上只是简单叙述（<strong>Using Swift with Cocoa and Objective-C</strong>），即 Swift 编译器会在我们使用 Objective-C 的 API 时自动的将其转成 Swift 风格的 API（说白了就是会对一些方法名、枚举名等等做一些有规则的删减，即重命名）。</p>
+<h3 id="单例方法命名"><a href="#单例方法命名" class="headerlink" title="单例方法命名"></a>单例方法命名</h3><!-- toc -->
+<p>在 Swift 中引用 Objective-C 单例时，如果单例方法包含于类名，则会出现编译错误，下面我们来看几个例子。</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h4><!-- toc -->
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@interface TXLocationManager : NSObject</div><div class="line"></div><div class="line">+ (instancetype)manager;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p><code>TXLoginManager</code> 类有一个单例方法命名为 manager，在 Swift 中引用 manager 方法时，会出现编译错误：</p>
+<p><img src="http://image.tingxins.cn/blog/2017/12/objc-singleton-name-in-swift.png" alt=""></p>
+<p>说白了，manager 方法已经废了。。。</p>
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h4><!-- toc -->
+<p>在 Example 1 的基础上，我们把单例方法的命名改一改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@interface TXLocationManager : NSObject</div><div class="line"></div><div class="line">+ (instancetype)shareInstance;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>单例方法命名改成 shareInstance 后，编译通过了。至此，至少问题已经解决了，现在我们再简单看看是什么原因？为何 manager 方法无法引用，而 shareInstance 却可以引用呢？</p>
+<h4 id="Example-3"><a href="#Example-3" class="headerlink" title="Example 3"></a>Example 3</h4><!-- toc -->
+<p>在 Example 1 的基础上，把 manager 单例方法名称改为 shareManager :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@interface TXLocationManager : NSObject</div><div class="line"></div><div class="line">+ (instancetype)shareManager;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>我们可以发现在 Swift 中引用时，shareManager 方法名被重命名为 share : </p>
+<p><img src="http://image.tingxins.cn/blog/2017/12/objc-singleton-name-in-swift-1.png" alt=""></p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><!-- toc -->
+<p>至此，我们可以得出一个简单的命名潜规则：在 Swift 中引用 Objective-C 单例时，如果单例方法包含于类名，则会出现编译错误，准确的说，应该是如果单例方法的名称正好是该类名驼峰命名的后缀，那么在 Swift 中引用该单例方法时，会出现编译错误。</p>
+<p>为何在 Swift 中引用 Objective-C 类的 API 会出现这种问题呢？官方 Guide 上时这样描述的：</p>
+<blockquote>
+<p>The Swift compiler automatically imports Objective-C code as conventional Swift code. It imports Objective-C class factory methods as Swift initializers, and Objective-C enumeration cases truncated names.</p>
+</blockquote>
+<p>因为 Swift 编译器在使用 Objective-C 的代码时会自动的将其转成 Swift 风格的代码，就是会对一些方法名、枚举名等等做一些有规则的删减。</p>
+<blockquote>
+<p>There may be edge cases in your code that are not automatically handled. If you need to change the name imported by Swift of an Objective-C method, enumeration case, or option set value, you can use the NS_SWIFT_NAME macro to customize how a declaration is imported.</p>
+</blockquote>
+<p>根据官方 Guide，上述的这种 case 属于 特殊的情况。那如何解决这种问题呢，Swift 提供了一个宏，专门处理我们遇到的这种 case —— <code>NS_SWIFT_NAME</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@interface TXLocationManager : NSObject</div><div class="line"></div><div class="line">+ (instancetype)manager NS_SWIFT_NAME(shareInstance());</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>这样，manager 该单例方法，当我们在 Swift 中引用时，会被重命名为 shareInstance。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">let _ = TXLocationManager.shareInstance()</div></pre></td></tr></table></figure>
+<h3 id="普通方法命名"><a href="#普通方法命名" class="headerlink" title="普通方法命名"></a>普通方法命名</h3><!-- toc -->
+<p>有时候，我们在 Swift 中引用 Objective-C 中某个类的 API 时，方法名是可能会被重命名的，下面我们直接看例子。</p>
+<h4 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h4><!-- toc -->
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@interface TXLocationManager : NSObject</div><div class="line"></div><div class="line">+ (instancetype)managerWithCoordinateY:(CGFloat)y</div><div class="line"></div><div class="line">// Or</div><div class="line">// + (TXLocationManager *)managerWithCoordinateY:(CGFloat)y</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>当该类的类方法返回自身类型的实例对象时，上述的方法会被重命名。应该这样引用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 方式一：</div><div class="line">let _ = TXLocationManager.init(coordinateY: 9)</div><div class="line"></div><div class="line">// 方式二：</div><div class="line">let _ = TXLocationManager(coordinateY: 9)</div><div class="line"></div><div class="line">// 错误引用方式，编译失败</div><div class="line">let _ = TXLocationManager.manager(withCoordinateY: 9)</div></pre></td></tr></table></figure>
+<p>通过上述实践，我们可以发现类方法中的 manager 前缀会被删掉，而且变成了 Swift 中的 init 方法。如果该类的类方法不返回自身类型的实例对象呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@interface TXLocationManager : NSObject</div><div class="line"></div><div class="line">+ (void)managerWithCoordinateY:(CGFloat)y;</div><div class="line"></div><div class="line">// Or</div><div class="line">// + (NSObject *)managerWithCoordinateY:(CGFloat)y;</div><div class="line">// + (CGFloat)managerWithCoordinateY:(CGFloat)y;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>通过实践可以发现，在 Swift 中是可以这样引用的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">TXLocationManager.manager(withCoordinateY: 9)</div></pre></td></tr></table></figure>
+<p>这种方式的引用同我们一般的方法引用是一致的，无异同。</p>
+<h4 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h4><!-- toc -->
+<p>实例方法的重命名规则与类方法有点相似，此处就不再详述了，感兴趣的朋友可以自己实践一下。（当然方法的重命名我们一般都可以通过 <code>NS_SWIFT_NAME</code> 来指定）</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><!-- toc -->
+<p><a href="https://stackoverflow.com/questions/24148464/how-to-call-an-objective-c-singleton-from-swift" target="_blank" rel="external">How to call an Objective-C singleton from Swift?</a></p>
             
         </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
         
-            <a href="/2017/07/01/about-delegate-oc/">
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" itemprop="image" src="http://image.tingxins.cn/blog/images/2017/about-delegate-infinite-exe-point.png"/>
-                </div>
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">标签</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Swift/">Swift</a> <a class="tag tag--primary tag--small t-link" href="/tags/hybrid/">hybrid</a> <a class="tag tag--primary tag--small t-link" href="/tags/混编/">混编</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/10/29/about-memory-safety-in-swift/" data-tooltip="关于 Swift 4 中内存安全访问">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
             </a>
+        </li>
+        
             
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
         
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-weibo"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/&amp;title=Objective-C 和 Swift 混编项目的小 Tips（一）">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
         
         
-        <li class="pagination-number">第 1 页 共 1 页</li>
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
     </ul>
 </div>
 
-</section>
+
+        
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
 
 
 
@@ -380,6 +472,142 @@
 </footer>
 
             </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/10/29/about-memory-safety-in-swift/" data-tooltip="关于 Swift 4 中内存安全访问">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-facebook-official"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-weibo"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/&amp;title=Objective-C 和 Swift 混编项目的小 Tips（一）">
+                    <i class="fa fa-qq"></i>
+                </a>
+            </li>
+        
+        
+            <li class="post-action">
+                <a class="post-action-btn btn btn--default" href="#disqus_thread">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#table-of-contents">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-facebook-official"></i><span>分享到 Facebook</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-twitter"></i><span>分享到 Twitter</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-google-plus"></i><span>分享到 Google+</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?&amp;title=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/">
+                    <i class="fa fa-weibo"></i><span>分享到 Weibo</span>
+                </a>
+            </li>
+        
+            
+            
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/&amp;title=Objective-C 和 Swift 混编项目的小 Tips（一）">
+                    <i class="fa fa-qq"></i><span>分享到 QQ</span>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
             
         </div>
         
@@ -695,6 +923,25 @@
         <!--SCRIPTS-->
 <script src="/assets/js/script-ivwiy10zeb8fifc4swnhkwneuk64y53w2scmdmtp8thi9cqfxh31aowtroaz.min.js"></script>
 <!--SCRIPTS END-->
+
+    
+        <script>
+             var disqus_config = function () {
+                 this.page.url = 'http://tingxins.cn/2017/12/24/about-hybrid-objc-swift/';
+                 
+                    this.page.identifier = '2017/12/24/about-hybrid-objc-swift/';
+                 
+             };
+            (function() {
+                var d = document, s = d.createElement('script');
+                var disqus_shortname = 'tingxins';
+                s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
